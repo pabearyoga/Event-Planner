@@ -1,0 +1,9 @@
+.home {
+  display: flex;
+  justify-content: space-between;
+}
+
+.settings {
+  display: flex;
+  gap: 24px;
+}
