@@ -1,0 +1,8 @@
+.container {
+  position: relative;
+  /* display: grid;
+  gap: 16px; */
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 22px 80px;
+}

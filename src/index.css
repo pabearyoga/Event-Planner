@@ -19,6 +19,7 @@ code {
 }
 
 :root {
+  --bg: #fefcff;
   --white: #fff;
   --black: #000;
   --accent: #7b61ff;
@@ -27,6 +28,10 @@ code {
   --low: #6bd475;
   --text: #3f3f3f;
   --divider: #aca7c3;
+
+  --mobile: 320px;
+  --tablet: 768px;
+  --desktop: 1280px;
 }
 
 * {

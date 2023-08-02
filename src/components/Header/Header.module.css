@@ -1,0 +1,19 @@
+.header {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--accent);
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--desktop);
+  margin: 0 auto;
+  padding: 22px 80px;
+}
+
+.settings {
+  display: flex;
+  gap: 24px;
+}

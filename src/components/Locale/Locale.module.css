@@ -1,0 +1,14 @@
+.locale {
+  display: flex;
+  width: 69px;
+  padding: 12px 4px 12px 12px;
+  align-items: center;
+  gap: 4px;
+
+  border-radius: 8px;
+  border: none;
+  background: var(--white);
+
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+  outline: none;
+}

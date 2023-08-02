@@ -1,0 +1,33 @@
+.wrapper {
+  position: relative;
+}
+
+.search {
+  display: flex;
+  width: 410px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+
+  border-radius: 8px;
+  border: none;
+  background: var(--white);
+  outline: none;
+
+  padding-left: 48px;
+
+  color: #888;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 100%; /* 14px */
+}
+
+.searchImg {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+}
