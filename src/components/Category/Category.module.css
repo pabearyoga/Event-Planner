@@ -1,0 +1,14 @@
+.select {
+  display: inline-flex;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  border-radius: 8px;
+  border: none;
+  background: var(--white);
+
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+  outline: none;
+}
