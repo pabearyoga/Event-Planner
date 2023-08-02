@@ -1,5 +1,5 @@
 import css from './EventCardItem.module.css';
-
+import { Btn } from '../../Btn/Btn';
 
 export const EventCardItem = ({ data }) => {
 
@@ -29,6 +29,9 @@ img8: require('../../../images/img8.jpg'),
                     <div className={css.overlayContent}>
                         <p className={css.overlayContentTitle}>{data.name}</p>
                         <p className={css.overlayContentText}>{data.description}</p>
+                    </div>
+                    <div className={css.overlayBtnWrapper}>
+                        <Btn style={{ padding: "10px 24px" }}>More info</Btn>
                     </div>
                 </div>
             </div>

@@ -8,9 +8,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1444px;
+  max-width: var(--desktop);
   margin: 0 auto;
-  padding: 22px 80px;
+  padding: 22px 0;
 }
 
 .settings {
