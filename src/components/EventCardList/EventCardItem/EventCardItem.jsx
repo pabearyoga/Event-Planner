@@ -13,13 +13,12 @@ export const EventCardItem = ({ data }) => {
   img7: require('../../../images/img7.jpg'),
 img8: require('../../../images/img8.jpg'),
   
-        // Інші зображення
     };
   
     return (
         <div className={css.wrapper}>
             <div className={css.cardThumb}>
-                <div className={css.imgWrapper}>
+                <div className={css.imgWrapper} >
                     <img src={images[data.photo]} className={css.img} alt={data.name}></img>
                 </div>
                 <div className={css.overlay}>
