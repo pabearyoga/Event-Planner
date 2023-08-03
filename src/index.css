@@ -9,8 +9,8 @@ body {
 
   background-color: #fefcff;
   background-image: url('./images/bg.png');
-  background-repeat: repeat;
-  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 code {
