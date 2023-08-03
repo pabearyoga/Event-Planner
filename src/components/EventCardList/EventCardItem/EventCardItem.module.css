@@ -54,13 +54,12 @@
   text-transform: capitalize;
 }
 
-.imgWrapper {
-  width: 100%;
+.imageWrapper {
+  width: 302px;
+  height: 480px;
 }
 
 .img {
-  width: 100%;
-  height: auto;
   object-fit: cover;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
