@@ -2,6 +2,7 @@ import styles from './CreateEventForm.module.css';
 import React, { useState, useEffect } from 'react';
 // import DatePicker from './Datepicker/DatepickerCalendar/Datepicker'
 import InputText from './InputText/InputText';
+import InputTextarea from './InputTextarea/InputTextarea';
 
 const CreateEventForm = () => {
   // const [formData, setFormData] = useState({
@@ -70,15 +71,14 @@ const CreateEventForm = () => {
           handleInputChange={handleInputChange}
           onClick={() => setTitle('')}
         />
-                <div className={styles.inputWrapper}>
-                    <label className={styles.label}>Description</label>
-                    <textarea
-                    name="description"
-                    value={description}
-                    onChange={handleInputChange}
-                    className={styles.input}
-                    ></textarea>
-                </div>            
+
+        <InputTextarea
+          label='Description'
+          name='description'
+          inputValue={description}
+          handleInputChange={handleInputChange}
+          onClick={() => setDescription('')}
+        />
 
                 <div className={styles.inputWrapper}>
                     <label className={styles.label}>Select date</label>
