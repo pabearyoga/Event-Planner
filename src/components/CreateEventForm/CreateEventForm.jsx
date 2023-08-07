@@ -1,7 +1,6 @@
 import styles from './CreateEventForm.module.css';
 import React, { useState, useEffect } from 'react';
 // import DatePicker from './Datepicker/DatepickerCalendar/Datepicker'
-import {IoIosClose} from 'react-icons/io'
 import InputText from './InputText/InputText';
 
 const CreateEventForm = () => {
@@ -34,9 +33,9 @@ const CreateEventForm = () => {
             case "description": 
                 setDescription(e.target.value);
                 break;
-            // case "location": 
-            //     setPlace(e.target.value);
-            //     break;
+            case "location": 
+                setLocation(e.target.value);
+                break;
             // case "category": 
             //     setCategory(e.target.value);
             //     break;
@@ -46,6 +45,8 @@ const CreateEventForm = () => {
             default: 
                 return;
         }
+      
+      console.log(e.target.name)
     }
   
   const handlePictureChange = (e) => {
@@ -58,31 +59,17 @@ const CreateEventForm = () => {
     // Handle form submission here
   };
 
-  const refreshClick = () => {
-    setTitle('')
-  }
-
   return (
       <form className={styles.form} onSubmit={handleSubmit}>
           
       <div className={styles.wrapper}>
         <InputText
           label='Title'
+          name='title'
           inputValue={title}
-          handleInputChange={ handleInputChange}
-          onClick={refreshClick}
-          />
-                {/* <div className={styles.inputWrapper}>
-                    <label className={styles.label}>Title</label>
-                    <input
-                    type="text"
-                    name="title"
-                    value={title}
-                    onChange={handleInputChange}
-                    className={styles.input}
-                    />
-                    <button className={styles.refreshBtn} onClick={() => setTitle('')} ><IoIosClose size={24} color='var(--accent)'/></button>
-                </div> */}
+          handleInputChange={handleInputChange}
+          onClick={() => setTitle('')}
+        />
                 <div className={styles.inputWrapper}>
                     <label className={styles.label}>Description</label>
                     <textarea
@@ -113,16 +100,13 @@ const CreateEventForm = () => {
                     className={styles.input}
                     />
                 </div>
-                <div className={styles.inputWrapper}>
-                    <label className={styles.label}>Location</label>
-                    <input
-                    type="text"
-                    name="location"
-                    value={location}
-                    onChange={handleInputChange}
-                    className={styles.input}
-                    />
-                </div>            
+        <InputText
+          label='Location'
+          name='location'
+          inputValue={location}
+          handleInputChange={handleInputChange}
+          onClick={() => setLocation('')}
+        />
             
                 <div className={styles.inputWrapper}>
                     <label className={styles.label}>Category:</label>

@@ -2,13 +2,13 @@ import styles from '../CreateEventForm.module.css';
 import {IoIosClose} from 'react-icons/io'
 
 
-const InputText = ({label, inputValue, handleInputChange, onClick}) => {
+const InputText = ({label, name, inputValue, handleInputChange, onClick}) => {
     return (
         <div className={styles.inputWrapper}>
             <label className={styles.label}>{label}</label>
             <input
             type="text"
-            name="title"
+            name={name}
             value={inputValue}
             onChange={handleInputChange}
             className={styles.input}
