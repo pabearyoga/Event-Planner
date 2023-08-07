@@ -3,8 +3,8 @@
 
 import { Layout } from './components/Layout/Layout';
 
-import { Home } from './pages/Home/Home';
-// import { CreateEvent } from './pages/CreateEvent/CreateEvent';
+// import { Home } from './pages/Home/Home';
+import { CreateEvent } from './pages/CreateEvent/CreateEvent';
 // import { EventDetails } from './pages/EventDetails/EventDetails';
 // import { EditEvent } from './pages/EditEvent/EditEvent';
 
@@ -16,10 +16,10 @@ import { Home } from './pages/Home/Home';
 function App() {
   return (
     <Layout>
-      <Home></Home>
-      {/* <CreateEvent></CreateEvent>
-      <EventDetails></EventDetails>
-      <EditEvent></EditEvent> */}
+      {/* <Home></Home> */}
+      <CreateEvent></CreateEvent>
+      {/* <EventDetails></EventDetails> */}
+      {/* <EditEvent></EditEvent> */}
     </Layout>
 
     // <Routes>
