@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 // import DatePicker from './Datepicker/DatepickerCalendar/Datepicker'
 import InputText from './InputText/InputText';
 import InputTextarea from './InputTextarea/InputTextarea';
+import InputFile from './InputFile/InputFile';
 
 const CreateEventForm = () => {
   // const [formData, setFormData] = useState({
@@ -25,6 +26,9 @@ const CreateEventForm = () => {
   const [category, setCategory] = useState('');
   const [priority, setPriority] = useState('');
   const [photo, setPhoto] = useState('');
+  const [photoName, setPhotoName] = useState('');
+
+
 
     const handleInputChange = (e) => {
         switch (e.target.name) {
@@ -37,6 +41,11 @@ const CreateEventForm = () => {
             case "location": 
                 setLocation(e.target.value);
                 break;
+            // case "photo": 
+            //     setPhoto(e.target.files[0]);
+            //     setPhotoName(e.target.files[0].name);
+                
+            //     break;
             // case "category": 
             //     setCategory(e.target.value);
             //     break;
@@ -47,7 +56,6 @@ const CreateEventForm = () => {
                 return;
         }
       
-      console.log(e.target.name)
     }
   
   const handlePictureChange = (e) => {
@@ -59,6 +67,8 @@ const CreateEventForm = () => {
     e.preventDefault();
     // Handle form submission here
   };
+
+  console.log(photo)
 
   return (
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -80,26 +90,27 @@ const CreateEventForm = () => {
           onClick={() => setDescription('')}
         />
 
-                <div className={styles.inputWrapper}>
-                    <label className={styles.label}>Select date</label>
-                    <input
-                    type="date"
-                    name="date"
-                    value={date}
-                    onChange={handleInputChange}
-                    className={styles.input}
-                    />
-                </div>
-                <div className={styles.inputWrapper}>
-                    <label className={styles.label}>Select time:</label>
-                    <input
-                    type="time"
-                    name="time"
-                    value={time}
-                    onChange={handleInputChange}
-                    className={styles.input}
-                    />
-                </div>
+        <div className={styles.inputWrapper}>
+            <label className={styles.label}>Select date</label>
+            <input
+            type="date"
+            name="date"
+            value={date}
+            onChange={handleInputChange}
+            className={styles.input}
+            />
+        </div>
+        <div className={styles.inputWrapper}>
+            <label className={styles.label}>Select time:</label>
+            <input
+            type="time"
+            name="time"
+            value={time}
+            onChange={handleInputChange}
+            className={styles.input}
+            />
+        </div>
+
         <InputText
           label='Location'
           name='location'
@@ -115,13 +126,20 @@ const CreateEventForm = () => {
                     <option value="category1">Category 1</option>
                     <option value="category2">Category 2</option>
                     </select>
-                </div>
-                <div className={styles.inputWrapper}>
+        </div>
+        <InputFile
+          label='Add picture'
+          inputValue={photo ? photo.name : ''}
+          handleInputChange={handlePictureChange}
+          onClick={() =>  setPhoto('')}
+        />
+                {/* <div className={styles.inputWrapper}>
                   <label className={styles.label}>Add picture</label>
-                  <div className={styles.fileInputWrapper}>                 
-                        <input className={styles.input} type="file" accept="image/*" name="photo" onChange={handlePictureChange} />
+                  <div className={styles.fileInputWrapper}>
+                    {photo.name}
+                    <input type="file" accept="image/*" name="photo" onChange={handlePictureChange} />
                   </div>
-                </div>
+                </div> */}
                 <div className={styles.inputWrapper}>
                     <label className={styles.label}>Priority</label>
                     <select name="priority" value={priority} onChange={handleInputChange} className={styles.input}>

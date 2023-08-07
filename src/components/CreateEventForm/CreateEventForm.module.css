@@ -144,13 +144,6 @@ input[type='file'] {
   opacity: 0;
 }
 
-/* input[type='date'] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  opacity: 0;
-} */
-
 .refreshBtn {
   position: absolute;
   top: 40px;
