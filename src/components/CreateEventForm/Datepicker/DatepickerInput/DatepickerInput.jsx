@@ -1,66 +1,33 @@
-import { useState } from "react";
 import  DatePicker  from "../DatepickerCalendar/Datepicker";
-import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
-import css from "../../CreateEventForm.module.css";
+import {GoChevronDown, GoChevronUp} from 'react-icons/go'
+import styles from '../../CreateEventForm.module.css';
 
-const DatePickerInput = ({
-    date,
-    handleInputChange,
-    showDatePicker,
-    toggleMenu,
-    handleSaveDate
-}) => {
-    const [startDate, setStartDate] = useState(new Date());
+console.log(Date())
 
-    const handleDateChange = (date) => {
-        setStartDate(date);
-    }
-
+const DatePickerInput = ({label, name, handleSelectClick, selectValue, showOption, onClose, onSelectDate}) => {
     return (
-        <div className={css.enabled} 
-            style={{position: "relative"}}
-        >
-            <label 
-                className={css.label} 
-                htmlFor="date"
+        <div className={styles.inputWrapper}>
+            <div className={styles.label}>{label}</div>
+            <button
+                name={name}
+                className={styles.input}
+                onClick={handleSelectClick}
+
             >
-                Select date
-            </label>
-            <input 
-                className={css.input} 
-                type="text"
-                id="date" 
-                name="date" 
-                placeholder="Select date"
-                value={date}
-                onChange={handleInputChange}
-                onClick={() => toggleMenu("date")}
-                style={{caretColor: "transparent"}}
-            />
-            <button 
-                type="button" 
-                className={css.inputBtn} 
-                style={{width: "95%", justifyContent: "right"}}
-                onClick={() => toggleMenu("date")}
-            >
-                {showDatePicker 
-                    ? <MdKeyboardArrowUp style={{width: 24, height: 24}}/>
-                    : <MdKeyboardArrowDown style={{width: 24, height: 24}} />
-                }
+                {selectValue}
             </button>
-                    
-            {showDatePicker && 
-                <div className={css.calendar}>
-                    <DatePicker 
-                        startDate={startDate}
-                        onSelect={handleDateChange}
-                        onClose={() => toggleMenu("date")}
-                        onSave={() => handleSaveDate(startDate)}
-                    />
-                </div>
-            }
+
+            {showOption ? <button className={styles.refreshBtn}><GoChevronUp size={24} color='var(--accent)' /></button> : <button className={styles.refreshBtn}><GoChevronDown size={24} color='var(--accent)' /></button>}
+
+            {showOption &&
+                <DatePicker
+                onClose={onClose}
+                onSelectDate={onSelectDate}
+                />}
         </div>
+            
     )
-}
+};
+
 
 export default DatePickerInput

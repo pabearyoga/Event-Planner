@@ -5,6 +5,9 @@ import InputText from './InputText/InputText';
 import InputTextarea from './InputTextarea/InputTextarea';
 import InputFile from './InputFile/InputFile';
 import SelectWrapper from './SelectWrapper/SelectWrapper';
+import DatePickerInput from './Datepicker/DatepickerInput/DatepickerInput';
+
+import { format } from 'date-fns';
 
 const CreateEventForm = () => {
   // const [formData, setFormData] = useState({
@@ -29,7 +32,7 @@ const CreateEventForm = () => {
   const [photo, setPhoto] = useState(null);
   const [photoName, setPhotoName] = useState('');
 
-  // const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
   // const [showTimePicker, setShowTimePicker] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [showPriorities, setShowPriorities] = useState(false);
@@ -44,9 +47,9 @@ const CreateEventForm = () => {
             case "description": 
                 setDescription(e.target.value);
                 break;
-            // case "date": 
-            //     setDate(e.target.value);
-            //     break;
+            case "date": 
+                setShowDatePicker(prevShowDatePicker => !prevShowDatePicker)
+                break;
             // case "time": 
             //     setTime(e.target.value);
             //     break;
@@ -68,14 +71,10 @@ const CreateEventForm = () => {
       
     }
   
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission here
   };
-
-
 
   const handleOptionSelect = (e) => {
     switch (e.target.name) {
@@ -99,6 +98,17 @@ const CreateEventForm = () => {
       default: 
           return;
     }
+  }
+
+  const datePickerOnClose = () => {
+    setDate('')
+    setShowDatePicker(false)
+  }
+
+  const onSelectDate = (date) => {
+    const formateDate = format(date, 'dd.MM.yyyy')
+    setDate(formateDate)
+    setShowDatePicker(false)
   }
 
   const priorityList = ['Hight', 'Medium', 'Low']
@@ -127,7 +137,18 @@ const CreateEventForm = () => {
           onClick={() => setDescription('')}
         />
 
-        <div className={styles.inputWrapper}>
+        <DatePickerInput
+          label='Select date'
+          name='date'
+          handleSelectClick={handleInputChange}
+          selectValue={date}
+          showOption={showDatePicker}
+          onClose={datePickerOnClose}
+          onSelectDate={onSelectDate}
+        />
+
+
+        {/* <div className={styles.inputWrapper}>
             <label className={styles.label}>Select date</label>
             <input
             type="date"
@@ -136,7 +157,7 @@ const CreateEventForm = () => {
             onChange={handleInputChange}
             className={styles.input}
             />
-        </div>
+        </div> */}
         <div className={styles.inputWrapper}>
             <label className={styles.label}>Select time:</label>
             <input
