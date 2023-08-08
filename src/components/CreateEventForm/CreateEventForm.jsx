@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import InputText from './InputText/InputText';
 import InputTextarea from './InputTextarea/InputTextarea';
 import InputFile from './InputFile/InputFile';
+import SelectWrapper from './SelectWrapper/SelectWrapper';
 
 const CreateEventForm = () => {
   // const [formData, setFormData] = useState({
@@ -25,8 +26,13 @@ const CreateEventForm = () => {
   const [location, setLocation] = useState('');
   const [category, setCategory] = useState('');
   const [priority, setPriority] = useState('');
-  const [photo, setPhoto] = useState('');
+  const [photo, setPhoto] = useState(null);
   const [photoName, setPhotoName] = useState('');
+
+  // const [showDatePicker, setShowDatePicker] = useState(false);
+  // const [showTimePicker, setShowTimePicker] = useState(false);
+  const [showCategories, setShowCategories] = useState(false);
+  const [showPriorities, setShowPriorities] = useState(false);
 
 
 
@@ -38,37 +44,68 @@ const CreateEventForm = () => {
             case "description": 
                 setDescription(e.target.value);
                 break;
+            // case "date": 
+            //     setDate(e.target.value);
+            //     break;
+            // case "time": 
+            //     setTime(e.target.value);
+            //     break;
             case "location": 
                 setLocation(e.target.value);
                 break;
-            // case "photo": 
-            //     setPhoto(e.target.files[0]);
-            //     setPhotoName(e.target.files[0].name);
-                
-            //     break;
-            // case "category": 
-            //     setCategory(e.target.value);
-            //     break;
-            // case "priority": 
-            //     setPriority(e.target.value);
-            //     break;
+            case "category": 
+                setShowCategories(prevShowPriorities => !prevShowPriorities)
+                break;
+            case "photo": 
+                setPhoto(e.target.files[0]);
+                break;
+            case 'priority':
+                setShowPriorities(prevShowPriorities => !prevShowPriorities)
+                break;
             default: 
                 return;
         }
       
     }
   
-  const handlePictureChange = (e) => {
-    const file = e.target.files[0];
-    setPhoto(file)
-  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission here
   };
 
-  console.log(photo)
+
+
+  const handleOptionSelect = (e) => {
+    switch (e.target.name) {
+      case 'Hight': 
+      case 'Medium': 
+      case 'Low': 
+        setPriority(e.target.name)
+        setShowPriorities(prevShowPriorities => !prevShowPriorities)
+
+          break;
+      case 'Art': 
+      case 'Music': 
+      case 'Business': 
+      case 'Conference': 
+      case 'Workshop': 
+      case 'Party': 
+      case 'Sport': 
+          setCategory(e.target.name)
+          setShowCategories(prevShowPriorities => !prevShowPriorities)
+          break;
+      default: 
+          return;
+    }
+  }
+
+  const priorityList = ['Hight', 'Medium', 'Low']
+
+  const categoryList = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport']
+
+
 
   return (
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -118,37 +155,34 @@ const CreateEventForm = () => {
           handleInputChange={handleInputChange}
           onClick={() => setLocation('')}
         />
+
+        <SelectWrapper
+          label='Category'
+          name='category'
+          handleSelectClick={handleInputChange}
+          selectValue={category}
+          showOption={showCategories}
+          optionList={categoryList}
+          handleOptionSelect={handleOptionSelect}
+        />
             
-                <div className={styles.inputWrapper}>
-                    <label className={styles.label}>Category:</label>
-                    <select name="category" value={category} onChange={handleInputChange} className={styles.input}>
-                    <option value="">Select category</option>
-                    <option value="category1">Category 1</option>
-                    <option value="category2">Category 2</option>
-                    </select>
-        </div>
         <InputFile
           label='Add picture'
           inputValue={photo ? photo.name : ''}
-          handleInputChange={handlePictureChange}
+          handleInputChange={handleInputChange}
           onClick={() =>  setPhoto('')}
         />
-                {/* <div className={styles.inputWrapper}>
-                  <label className={styles.label}>Add picture</label>
-                  <div className={styles.fileInputWrapper}>
-                    {photo.name}
-                    <input type="file" accept="image/*" name="photo" onChange={handlePictureChange} />
-                  </div>
-                </div> */}
-                <div className={styles.inputWrapper}>
-                    <label className={styles.label}>Priority</label>
-                    <select name="priority" value={priority} onChange={handleInputChange} className={styles.input}>
-                    <option value="">Select priority</option>
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                    </select>
-                </div>
+
+        <SelectWrapper
+          label='Priority'
+          name='priority'
+          handleSelectClick={handleInputChange}
+          selectValue={priority}
+          showOption={showPriorities}
+          optionList={priorityList}
+          handleOptionSelect={handleOptionSelect}
+        />
+
           </div>
 
 
