@@ -1,25 +1,16 @@
 import styles from './CreateEventForm.module.css';
 import React, { useState, useEffect } from 'react';
-// import DatePicker from './Datepicker/DatepickerCalendar/Datepicker'
 import InputText from './InputText/InputText';
 import InputTextarea from './InputTextarea/InputTextarea';
 import InputFile from './InputFile/InputFile';
 import SelectWrapper from './SelectWrapper/SelectWrapper';
 import DatePickerInput from './Datepicker/DatepickerInput/DatepickerInput';
+import TimePick from './TimePicker/TimePicker';
 
 import { format } from 'date-fns';
 
 const CreateEventForm = () => {
-  // const [formData, setFormData] = useState({
-  //   name: '',
-  //   description: '',
-  //   category: '',
-  //   priority: '',
-  //   location: '',
-  //   date: '',
-  //   time: '',
-  //   photo: null,
-  // });
+
 
 
   const [title, setTitle] = useState('');
@@ -30,10 +21,9 @@ const CreateEventForm = () => {
   const [category, setCategory] = useState('');
   const [priority, setPriority] = useState('');
   const [photo, setPhoto] = useState(null);
-  const [photoName, setPhotoName] = useState('');
 
   const [showDatePicker, setShowDatePicker] = useState(false);
-  // const [showTimePicker, setShowTimePicker] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [showPriorities, setShowPriorities] = useState(false);
 
@@ -50,9 +40,9 @@ const CreateEventForm = () => {
             case "date": 
                 setShowDatePicker(prevShowDatePicker => !prevShowDatePicker)
                 break;
-            // case "time": 
-            //     setTime(e.target.value);
-            //     break;
+            case "time": 
+                setShowTimePicker(prevShowTimePicker => !prevShowTimePicker)
+                break;
             case "location": 
                 setLocation(e.target.value);
                 break;
@@ -111,6 +101,10 @@ const CreateEventForm = () => {
     setShowDatePicker(false)
   }
 
+  const onSelectTime = (time) => {
+    setTime(time)
+  }
+
   const priorityList = ['Hight', 'Medium', 'Low']
 
   const categoryList = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport']
@@ -147,27 +141,15 @@ const CreateEventForm = () => {
           onSelectDate={onSelectDate}
         />
 
+        <TimePick
+          label='Select time'
+          name='time'
+          handleInputChange={handleInputChange}
+          selectValue={time}
+          showOption={showTimePicker}
+          onSelectTime={onSelectTime}
 
-        {/* <div className={styles.inputWrapper}>
-            <label className={styles.label}>Select date</label>
-            <input
-            type="date"
-            name="date"
-            value={date}
-            onChange={handleInputChange}
-            className={styles.input}
-            />
-        </div> */}
-        <div className={styles.inputWrapper}>
-            <label className={styles.label}>Select time:</label>
-            <input
-            type="time"
-            name="time"
-            value={time}
-            onChange={handleInputChange}
-            className={styles.input}
-            />
-        </div>
+        />
 
         <InputText
           label='Location'
