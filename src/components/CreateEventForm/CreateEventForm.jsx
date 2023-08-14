@@ -51,21 +51,33 @@ const CreateEventForm = () => {
                 break;
             case "date": 
                 setShowDatePicker(prevShowDatePicker => !prevShowDatePicker)
+                setShowTimePicker(false)
+                setShowCategories(false)
+                setShowPriorities(false)
                 break;
             case "time": 
                 setShowTimePicker(prevShowTimePicker => !prevShowTimePicker)
+                setShowDatePicker(false)
+                setShowCategories(false)
+                setShowPriorities(false)
                 break;
             case "location": 
                 setLocation(e.target.value);
                 break;
             case "category": 
                 setShowCategories(prevShowPriorities => !prevShowPriorities)
+                setShowTimePicker(false)
+                setShowDatePicker(false)
+                setShowPriorities(false)
                 break;
             case "photo": 
                 setPhoto(e.target.files[0]);
                 break;
             case 'priority':
                 setShowPriorities(prevShowPriorities => !prevShowPriorities)
+                setShowCategories(false)
+                setShowTimePicker(false)
+                setShowDatePicker(false)
                 break;
             default: 
                 return;
@@ -126,14 +138,14 @@ const CreateEventForm = () => {
     console.log('submit')
     
     
-    setTitle('');
-    setDescription('');
-    setDate('');
-    setTime('');
-    setLocation('');
-    setCategory('');
-    setPhoto(null);
-    setPriority('');
+    // setTitle('');
+    // setDescription('');
+    // setDate('');
+    // setTime('');
+    // setLocation('');
+    // setCategory('');
+    // setPhoto(null);
+    // setPriority('');
     
   };
 
@@ -218,7 +230,7 @@ const CreateEventForm = () => {
 
       {/* <button type="submit">Submit</button> */}
       <div className={styles.submitBtnWrapper}>
-        <Btn type={'submit'} onClick={()=>handleSubmit}>Add event</Btn>
+        <Btn type={'submit'} onClick={() => handleSubmit}>Add event</Btn>
       </div>
 
     </form>
