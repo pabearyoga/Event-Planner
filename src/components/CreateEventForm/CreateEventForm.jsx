@@ -6,6 +6,8 @@ import InputFile from './InputFile/InputFile';
 import SelectWrapper from './SelectWrapper/SelectWrapper';
 import DatePickerInput from './Datepicker/DatepickerInput/DatepickerInput';
 import TimePick from './TimePicker/TimePicker';
+import { Btn } from '../Btn/Btn';
+
 
 import { format } from 'date-fns';
 
@@ -19,8 +21,8 @@ const CreateEventForm = () => {
   const [time, setTime] = useState('');
   const [location, setLocation] = useState('');
   const [category, setCategory] = useState('');
-  const [priority, setPriority] = useState('');
   const [photo, setPhoto] = useState(null);
+  const [priority, setPriority] = useState('');
 
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
@@ -28,6 +30,16 @@ const CreateEventForm = () => {
   const [showPriorities, setShowPriorities] = useState(false);
 
 
+  // console.log({
+  //   title: title,
+  //   description: description,
+  //   date: date,
+  //   time: time,
+  //   location: location,
+  //   category: category,
+  //   priority: priority,
+  //   photo: photo
+  // })
 
     const handleInputChange = (e) => {
         switch (e.target.name) {
@@ -61,10 +73,7 @@ const CreateEventForm = () => {
       
     }
   
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here
-  };
+
 
   const handleOptionSelect = (e) => {
     switch (e.target.name) {
@@ -103,13 +112,30 @@ const CreateEventForm = () => {
 
   const onSelectTime = (time) => {
     setTime(time)
+
+
   }
 
   const priorityList = ['Hight', 'Medium', 'Low']
 
   const categoryList = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport']
 
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    console.log('submit')
+    
+    
+    setTitle('');
+    setDescription('');
+    setDate('');
+    setTime('');
+    setLocation('');
+    setCategory('');
+    setPhoto(null);
+    setPriority('');
+    
+  };
 
   return (
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -191,6 +217,10 @@ const CreateEventForm = () => {
 
 
       {/* <button type="submit">Submit</button> */}
+      <div className={styles.submitBtnWrapper}>
+        <Btn type={'submit'} onClick={()=>handleSubmit}>Add event</Btn>
+      </div>
+
     </form>
   );
 };
