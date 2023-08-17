@@ -1,10 +1,12 @@
 import css from './EventDetails.module.css';
 
 
-export const EventDetails = () => {
+const EventDetails = () => {
     return (
         <div className={css.home}>
             EventDetails
         </div>
     )
 };
+
+export default EventDetails

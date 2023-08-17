@@ -7,9 +7,11 @@ import EventCardList from '../../components/EventCardList/EventCardList';
 
 import eventData from '../../utils/eventDB.json'
 
+import { NavLink } from 'react-router-dom';
 
 
-export const Home = () => {
+
+const Home = () => {
     return (
         <div className={css.home}>
             <div className={css.homeHeader}>
@@ -18,7 +20,9 @@ export const Home = () => {
                 <div className={css.settings}>
                     <Category></Category>
                     <SortBy></SortBy>
-                    <Btn>Add new event</Btn>
+                    <NavLink to="create">
+                        <Btn>Add new event</Btn>
+                    </NavLink>
                 </div>               
             </div>
 
@@ -26,3 +30,5 @@ export const Home = () => {
         </div>
     )
 };
+
+export default Home
