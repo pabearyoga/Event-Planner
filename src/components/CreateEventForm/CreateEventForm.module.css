@@ -150,6 +150,9 @@ input[type='file'] {
   top: 0;
   right: 0;
   opacity: 0;
+  width: 100%;
+  min-height: 56px;
+  cursor: copy;
 }
 
 .refreshBtn {
