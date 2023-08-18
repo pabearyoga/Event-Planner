@@ -13,7 +13,7 @@ const InputText = ({label, name, inputValue, handleInputChange, onClick}) => {
             onChange={handleInputChange}
             className={styles.input}
             />
-            <button className={styles.refreshBtn} onClick={onClick} ><IoIosClose size={24} color='var(--accent)'/></button>
+            <btn className={styles.refreshBtn} onClick={onClick} ><IoIosClose size={24} color='var(--accent)'/></btn>
         </div>
     )
 };

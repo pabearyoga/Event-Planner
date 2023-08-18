@@ -57,7 +57,7 @@ export const EventCardItem = ({ data }) => {
                         <p className={css.overlayContentText}>{data.description}</p>
                     </div>
                     <div className={css.overlayBtnWrapper}>
-                        <Btn style={{ padding: "10px 24px" }}>More info</Btn>
+                        <Btn style={{ padding: "10px 24px" }} onClick={()=> console.log(data.id)}>More info</Btn>
                     </div>
                 </div>
             </div>

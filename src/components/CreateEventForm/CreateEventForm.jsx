@@ -8,13 +8,15 @@ import DatePickerInput from './Datepicker/DatepickerInput/DatepickerInput';
 import TimePick from './TimePicker/TimePicker';
 import { Btn } from '../Btn/Btn';
 
+import { nanoid } from 'nanoid'
+
 
 import { format } from 'date-fns';
 
 const CreateEventForm = () => {
 
 
-
+  const [id, setId] = useState('')
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
@@ -30,84 +32,87 @@ const CreateEventForm = () => {
   const [showPriorities, setShowPriorities] = useState(false);
 
 
-  // console.log({
-  //   title: title,
-  //   description: description,
-  //   date: date,
-  //   time: time,
-  //   location: location,
-  //   category: category,
-  //   priority: priority,
-  //   photo: photo
-  // })
 
-    const handleInputChange = (e) => {
-        switch (e.target.name) {
-            case "title": 
-                setTitle(e.target.value);
-                break;
-            case "description": 
-                setDescription(e.target.value);
-                break;
-            case "date": 
-                setShowDatePicker(prevShowDatePicker => !prevShowDatePicker)
-                setShowTimePicker(false)
-                setShowCategories(false)
-                setShowPriorities(false)
-                break;
-            case "time": 
-                setShowTimePicker(prevShowTimePicker => !prevShowTimePicker)
-                setShowDatePicker(false)
-                setShowCategories(false)
-                setShowPriorities(false)
-                break;
-            case "location": 
-                setLocation(e.target.value);
-                break;
-            case "category": 
-                setShowCategories(prevShowPriorities => !prevShowPriorities)
-                setShowTimePicker(false)
-                setShowDatePicker(false)
-                setShowPriorities(false)
-                break;
-            case "photo": 
-                setPhoto(e.target.files[0]);
-                break;
-            case 'priority':
-                setShowPriorities(prevShowPriorities => !prevShowPriorities)
-                setShowCategories(false)
-                setShowTimePicker(false)
-                setShowDatePicker(false)
-                break;
-            default: 
-                return;
-        }
-      
+  const data = {
+    id: id,
+    name: title,
+    description: description,
+    category: category,
+    priority: priority,
+    location: location,
+    date: date,
+    time: time,
+    photo: photo
+  }
+
+
+  const handleInputChange = (e) => {
+    switch (e.target.name) {
+      case "title":
+        setTitle(e.target.value);
+        break;
+      case "description":
+        setDescription(e.target.value);
+        break;
+      case "date":
+        setShowDatePicker(prevShowDatePicker => !prevShowDatePicker)
+        setShowTimePicker(false)
+        setShowCategories(false)
+        setShowPriorities(false)
+        break;
+      case "time":
+        setShowTimePicker(prevShowTimePicker => !prevShowTimePicker)
+        setShowDatePicker(false)
+        setShowCategories(false)
+        setShowPriorities(false)
+        break;
+      case "location":
+        setLocation(e.target.value);
+        break;
+      case "category":
+        setShowCategories(prevShowPriorities => !prevShowPriorities)
+        setShowTimePicker(false)
+        setShowDatePicker(false)
+        setShowPriorities(false)
+        break;
+      case "photo":
+        setPhoto(e.target.files[0]);
+        break;
+      case 'priority':
+        setShowPriorities(prevShowPriorities => !prevShowPriorities)
+        setShowCategories(false)
+        setShowTimePicker(false)
+        setShowDatePicker(false)
+        break;
+      default:
+        return;
     }
+      
+  }
   
 
 
   const handleOptionSelect = (e) => {
     switch (e.target.name) {
-      case 'Hight': 
-      case 'Medium': 
-      case 'Low': 
+      case 'Hight':
+      case 'Medium':
+      case 'Low':
         setPriority(e.target.name)
         setShowPriorities(prevShowPriorities => !prevShowPriorities)
 
-          break;
-      case 'Art': 
-      case 'Music': 
-      case 'Business': 
-      case 'Conference': 
-      case 'Workshop': 
-      case 'Party': 
-      case 'Sport': 
-          setCategory(e.target.name)
-          setShowCategories(prevShowPriorities => !prevShowPriorities)
-          break;
-      default: 
-          return;
+        break;
+      case 'Art':
+      case 'Music':
+      case 'Business':
+      case 'Conference':
+      case 'Workshop':
+      case 'Party':
+      case 'Sport':
+        setCategory(e.target.name)
+        setShowCategories(prevShowPriorities => !prevShowPriorities)
+        break;
+      default:
+        return;
     }
   }
 
@@ -133,21 +138,25 @@ const CreateEventForm = () => {
   const categoryList = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport']
 
   const handleSubmit = (e) => {
+    e.preventDefault();    
+  };
+
+  const formSubmit = (e) => {
     e.preventDefault();
     
-    console.log('submit')
-    
-    
-    // setTitle('');
-    // setDescription('');
-    // setDate('');
-    // setTime('');
-    // setLocation('');
-    // setCategory('');
-    // setPhoto(null);
-    // setPriority('');
-    
-  };
+    setId(nanoid());
+    console.log(data)
+        
+    setId('');
+    setTitle('');
+    setDescription('');
+    setDate('');
+    setTime('');
+    setLocation('');
+    setCategory('');
+    setPhoto(null);
+    setPriority('');
+  }
 
   return (
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -230,7 +239,7 @@ const CreateEventForm = () => {
 
       {/* <button type="submit">Submit</button> */}
       <div className={styles.submitBtnWrapper}>
-        <Btn type={'submit'} onClick={() => handleSubmit}>Add event</Btn>
+        <Btn type={'submit'} onClick={formSubmit}>Add event</Btn>
       </div>
 
     </form>

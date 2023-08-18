@@ -14,7 +14,7 @@ const InputTextarea = ({label, name, inputValue, handleInputChange, onClick}) =>
             className={styles.input}
             />
                 
-            <button className={styles.refreshBtn} onClick={onClick} ><IoIosClose size={24} color='var(--accent)'/></button>
+            <btn className={styles.refreshBtn} onClick={onClick} ><IoIosClose size={24} color='var(--accent)'/></btn>
         </div> 
     )
 };
