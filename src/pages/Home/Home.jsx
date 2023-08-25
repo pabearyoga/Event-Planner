@@ -5,7 +5,8 @@ import { Btn } from '../../components/Btn/Btn';
 import Title from '../../components/Title/Title'
 import EventCardList from '../../components/EventCardList/EventCardList';
 
-import eventData from '../../utils/eventDB.json'
+import { getAllEvents } from '../../utils/services/eventService';
+
 
 import { NavLink } from 'react-router-dom';
 
@@ -26,7 +27,7 @@ const Home = () => {
                 </div>               
             </div>
 
-            <EventCardList eventData={eventData}></EventCardList>
+            <EventCardList eventData={getAllEvents()}></EventCardList>
         </div>
     )
 };

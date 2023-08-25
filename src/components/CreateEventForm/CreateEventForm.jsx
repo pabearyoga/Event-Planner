@@ -7,15 +7,16 @@ import SelectWrapper from './SelectWrapper/SelectWrapper';
 import DatePickerInput from './Datepicker/DatepickerInput/DatepickerInput';
 import TimePick from './TimePicker/TimePicker';
 import { Btn } from '../Btn/Btn';
-
 import { nanoid } from 'nanoid'
-
-
 import { format } from 'date-fns';
+import { addEvent} from '../../utils/services/eventService';
+// import { addEvent, updateEvent, deleteEvent, getAllEvents } from '../../utils/services/eventService';
+// import { Redirect } from 'react-router-dom';
 
 const CreateEventForm = () => {
+  const idEvent = nanoid();
 
-
+  // const [redirectToHome, setRedirectToHome] = useState(false)
   const [id, setId] = useState('')
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -141,11 +142,20 @@ const CreateEventForm = () => {
     e.preventDefault();    
   };
 
+  useEffect(() => {
+  // Код, який ви хочете виконати один раз після монтажу компонента
+    setId(idEvent);
+
+
+  // Ви можете виконати тут будь-яку ініціалізацію, запити до сервера і т.д.
+  }, []); // Пустий масив залежностей
+
+
+
   const formSubmit = (e) => {
     e.preventDefault();
-    
-    setId(nanoid());
-    console.log(data)
+
+    addEvent(data)
         
     setId('');
     setTitle('');
@@ -156,6 +166,8 @@ const CreateEventForm = () => {
     setCategory('');
     setPhoto(null);
     setPriority('');
+
+    // setRedirectToHome(true)
   }
 
   return (
@@ -239,7 +251,8 @@ const CreateEventForm = () => {
 
       {/* <button type="submit">Submit</button> */}
       <div className={styles.submitBtnWrapper}>
-        <Btn type={'submit'} onClick={formSubmit}>Add event</Btn>
+          <Btn type={'submit'} onClick={formSubmit}>Add event</Btn>
+
       </div>
 
     </form>
