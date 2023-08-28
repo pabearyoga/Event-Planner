@@ -31,6 +31,7 @@ export const EventCardItem = ({ data }) => {
         img6: require('../../../images/img6.jpg'),
         img7: require('../../../images/img7.jpg'),
         img8: require('../../../images/img8.jpg'),
+        default: require('../../../images/default.png'),
   
     };
 

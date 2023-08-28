@@ -68,6 +68,7 @@
 .overlay {
   background-color: transparent;
   position: absolute;
+  width: 100%;
   top: 277px;
   left: 0;
   transform: translateY(0);

@@ -13,6 +13,7 @@ import { addEvent } from '../../utils/services/eventService';
 // import { addEvent, updateEvent, deleteEvent, getAllEvents } from '../../utils/services/eventService';
 // import { Redirect } from 'react-router-dom';
 
+
 const CreateEventForm = () => {
   const idEvent = nanoid();
 
@@ -24,7 +25,7 @@ const CreateEventForm = () => {
   const [time, setTime] = useState('');
   const [location, setLocation] = useState('');
   const [category, setCategory] = useState('');
-  const [photo, setPhoto] = useState(null);
+  const [photo, setPhoto] = useState('default');
   const [priority, setPriority] = useState('');
 
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -176,6 +177,8 @@ const CreateEventForm = () => {
     e.preventDefault();
 
     addEvent(data)
+
+    console.log(data)
 
     setId('');
     setTitle('');
