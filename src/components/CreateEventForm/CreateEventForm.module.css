@@ -268,6 +268,7 @@ input[type='file'] {
 }
 
 .inputInvalid {
+  position: relative;
   display: flex;
   /* width: 100%; */
   min-height: 56px;
@@ -286,4 +287,19 @@ input[type='file'] {
   line-height: 24px;
 
   background-color: transparent;
+}
+
+.invalidInputeMessage::after {
+  content: 'Invalid input';
+  position: absolute;
+  bottom: -23px;
+  right: 19px;
+
+  color: var(--hight, #ff2b77);
+  text-align: right;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
 }
