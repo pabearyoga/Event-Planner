@@ -9,7 +9,7 @@ import TimePick from './TimePicker/TimePicker';
 import { Btn } from '../Btn/Btn';
 import { nanoid } from 'nanoid'
 import { format } from 'date-fns';
-import { addEvent} from '../../utils/services/eventService';
+import { addEvent } from '../../utils/services/eventService';
 // import { addEvent, updateEvent, deleteEvent, getAllEvents } from '../../utils/services/eventService';
 // import { Redirect } from 'react-router-dom';
 
@@ -32,6 +32,10 @@ const CreateEventForm = () => {
   const [showCategories, setShowCategories] = useState(false);
   const [showPriorities, setShowPriorities] = useState(false);
 
+          // titleInputValidation
+  const [titleValidation, setTitleValidation] = useState(true);
+  const [locationValidation, setLocationValidation] = useState(false);
+
 
 
   const data = {
@@ -47,9 +51,14 @@ const CreateEventForm = () => {
   }
 
 
+
+
   const handleInputChange = (e) => {
     switch (e.target.name) {
       case "title":
+        // titleInputValidation
+        setTitleValidation(/^[A-Za-zА-Яа-яЁё]+$/.test(e.target.value))
+
         setTitle(e.target.value);
         break;
       case "description":
@@ -68,6 +77,7 @@ const CreateEventForm = () => {
         setShowPriorities(false)
         break;
       case "location":
+        setLocationValidation(/^[A-Za-zА-Яа-яЁё]+$/.test(e.target.value))
         setLocation(e.target.value);
         break;
       case "category":
@@ -138,8 +148,17 @@ const CreateEventForm = () => {
 
   const categoryList = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport']
 
+
+  useEffect(() => {
+    title === '' && setTitleValidation(true)
+    location === '' && setLocationValidation(true)
+
+  }, [title, location]);
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();    
+
   };
 
   useEffect(() => {
@@ -177,6 +196,8 @@ const CreateEventForm = () => {
         <InputText
           label='Title'
           name='title'
+          // titleInputValidation
+          validation={titleValidation}
           inputValue={title}
           handleInputChange={handleInputChange}
           onClick={() => setTitle('')}
@@ -213,6 +234,7 @@ const CreateEventForm = () => {
         <InputText
           label='Location'
           name='location'
+          validation={locationValidation}
           inputValue={location}
           handleInputChange={handleInputChange}
           onClick={() => setLocation('')}

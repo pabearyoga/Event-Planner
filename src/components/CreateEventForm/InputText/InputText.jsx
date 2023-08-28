@@ -2,7 +2,7 @@ import styles from '../CreateEventForm.module.css';
 import {IoIosClose} from 'react-icons/io'
 
 
-const InputText = ({label, name, inputValue, handleInputChange, onClick}) => {
+const InputText = ({label, name, inputValue, validation, handleInputChange, onClick}) => {
     return (
         <div className={styles.inputWrapper}>
             <label className={styles.label}>{label}</label>
@@ -11,11 +11,11 @@ const InputText = ({label, name, inputValue, handleInputChange, onClick}) => {
             name={name}
             value={inputValue}
             onChange={handleInputChange}
-            className={styles.input}
-            />
-            <btn className={styles.refreshBtn} onClick={onClick} ><IoIosClose size={24} color='var(--accent)'/></btn>
+            className={`${validation ? styles.input : styles.inputInvalid}`}            />
+            <btn className={styles.refreshBtn} onClick={onClick} ><IoIosClose size={24} color={`${validation ? 'var(--accent)' : 'var(--hight)'}`} /></btn>
         </div>
     )
 };
 
 export default InputText;
+
