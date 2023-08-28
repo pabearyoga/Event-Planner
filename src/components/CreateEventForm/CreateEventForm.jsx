@@ -34,7 +34,9 @@ const CreateEventForm = () => {
 
           // titleInputValidation
   const [titleValidation, setTitleValidation] = useState(true);
-  const [locationValidation, setLocationValidation] = useState(false);
+  const [locationValidation, setLocationValidation] = useState(true);
+
+  const [submitDisabled, setSubmitDisabled] = useState(true)
 
 
 
@@ -58,7 +60,6 @@ const CreateEventForm = () => {
       case "title":
         // titleInputValidation
         setTitleValidation(/^[A-Za-zА-Яа-яЁё]+$/.test(e.target.value))
-
         setTitle(e.target.value);
         break;
       case "description":
@@ -150,11 +151,16 @@ const CreateEventForm = () => {
 
 
   useEffect(() => {
-    title === '' && setTitleValidation(true)
-    location === '' && setLocationValidation(true)
-
-  }, [title, location]);
+    if (title && location) {
+      setSubmitDisabled(false)
+      console.log(submitDisabled)
+    } else {
+      setSubmitDisabled(true);
+      console.log(submitDisabled)
+    }
+  }, [title, location, submitDisabled]);
   
+  console.log(submitDisabled)
 
   const handleSubmit = (e) => {
     e.preventDefault();    
@@ -162,20 +168,15 @@ const CreateEventForm = () => {
   };
 
   useEffect(() => {
-  // Код, який ви хочете виконати один раз після монтажу компонента
     setId(idEvent);
-
-
-  // Ви можете виконати тут будь-яку ініціалізацію, запити до сервера і т.д.
-  }, []); // Пустий масив залежностей
-
+  }, []); 
 
 
   const formSubmit = (e) => {
     e.preventDefault();
 
     addEvent(data)
-        
+
     setId('');
     setTitle('');
     setDescription('');
@@ -189,6 +190,13 @@ const CreateEventForm = () => {
     // setRedirectToHome(true)
   }
 
+  const notValidForm = (e) => {
+    e.preventDefault();
+
+    !title && setTitleValidation(false);
+    !location && setLocationValidation(false)
+  }
+
   return (
       <form className={styles.form} onSubmit={handleSubmit}>
           
@@ -196,7 +204,6 @@ const CreateEventForm = () => {
         <InputText
           label='Title'
           name='title'
-          // titleInputValidation
           validation={titleValidation}
           inputValue={title}
           handleInputChange={handleInputChange}
@@ -269,11 +276,11 @@ const CreateEventForm = () => {
 
           </div>
 
-
-
-      {/* <button type="submit">Submit</button> */}
       <div className={styles.submitBtnWrapper}>
-          <Btn type={'submit'} onClick={formSubmit}>Add event</Btn>
+        {submitDisabled ? 
+          <Btn type={'submit'}  onClick={notValidForm} >Add event</Btn> :
+          <Btn type={'submit'}  onClick={formSubmit} >Add event</Btn>
+          }
 
       </div>
 
