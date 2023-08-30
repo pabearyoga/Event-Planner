@@ -34,9 +34,13 @@ const CreateEventForm = () => {
   const [showCategories, setShowCategories] = useState(false);
   const [showPriorities, setShowPriorities] = useState(false);
 
-          // titleInputValidation
+          // InputValidation
   const [titleValidation, setTitleValidation] = useState(true);
+  const [dateValidation, setDateValidation] = useState(true);
+  const [timeValidation, setTimenValidation] = useState(true);
   const [locationValidation, setLocationValidation] = useState(true);
+  const [categoryValidation, setCategoryValidation] = useState(true);
+  const [priorityValidation, setPriorityValidation] = useState(true);
 
   const [submitDisabled, setSubmitDisabled] = useState(true)
 
@@ -68,6 +72,7 @@ const CreateEventForm = () => {
         setDescription(e.target.value);
         break;
       case "date":
+        setDateValidation(true)
         setShowDatePicker(prevShowDatePicker => !prevShowDatePicker)
         setShowTimePicker(false)
         setShowCategories(false)
@@ -104,7 +109,6 @@ const CreateEventForm = () => {
       
   }
   
-
 
   const handleOptionSelect = (e) => {
     switch (e.target.name) {
@@ -153,16 +157,15 @@ const CreateEventForm = () => {
 
 
   useEffect(() => {
-    if (title && location) {
+    if (title && location && date) {
       setSubmitDisabled(false)
-      console.log(submitDisabled)
+      // console.log(submitDisabled)
     } else {
       setSubmitDisabled(true);
-      console.log(submitDisabled)
+      // console.log(submitDisabled)
     }
   }, [title, location, submitDisabled]);
   
-  console.log(submitDisabled)
 
   const handleSubmit = (e) => {
     e.preventDefault();    
@@ -193,11 +196,16 @@ const CreateEventForm = () => {
     navigate('/');
   }
 
+
   const notValidForm = (e) => {
     e.preventDefault();
 
     !title && setTitleValidation(false);
-    !location && setLocationValidation(false)
+    !date && setDateValidation(false);
+    // !time && setTimeValidation(false);
+    !location && setLocationValidation(false);
+    // !category && setCategoryValidation(false);
+    // !priority && setPriorityValidation(false);
   }
 
   return (
@@ -224,6 +232,7 @@ const CreateEventForm = () => {
         <DatePickerInput
           label='Select date'
           name='date'
+          validation={dateValidation}
           handleSelectClick={handleInputChange}
           selectValue={date}
           showOption={showDatePicker}

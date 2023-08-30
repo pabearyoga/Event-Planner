@@ -11,7 +11,7 @@ const InputText = ({label, name, inputValue, validation, handleInputChange, onCl
             name={name}
             value={inputValue}
             onChange={handleInputChange}
-                className={`${validation ? styles.input : styles.inputInvalid}`} />
+            className={`${validation ? styles.input : styles.inputInvalid}`} />
             {!validation && <div className={styles.invalidInputeMessage}></div>}
             <btn className={styles.refreshBtn} onClick={onClick} ><IoIosClose size={24} color={`${validation ? 'var(--accent)' : 'var(--hight)'}`} /></btn>
         </div>

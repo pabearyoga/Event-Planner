@@ -4,20 +4,21 @@ import styles from '../../CreateEventForm.module.css';
 
 console.log(Date())
 
-const DatePickerInput = ({label, name, handleSelectClick, selectValue, showOption, onClose, onSelectDate}) => {
+const DatePickerInput = ({label, name, validation, handleSelectClick, selectValue, showOption, onClose, onSelectDate}) => {
     return (
         <div className={styles.inputWrapper}>
             <div className={styles.label}>{label}</div>
             <button
                 name={name}
-                className={styles.input}
+                className={`${validation ? styles.input : styles.inputInvalid}`}
                 onClick={handleSelectClick}
 
             >
                 {selectValue}
             </button>
+            {!validation && <div className={styles.invalidInputeMessage}></div>}
 
-            {showOption ? <button className={styles.refreshBtn}><GoChevronUp size={24} color='var(--accent)' /></button> : <button className={styles.refreshBtn}><GoChevronDown size={24} color='var(--accent)' /></button>}
+            {showOption ? <button className={styles.refreshBtn}><GoChevronUp size={24} color={`${validation ? 'var(--accent)' : 'var(--hight)'}`} /></button> : <button className={styles.refreshBtn}><GoChevronDown size={24} color={`${validation ? 'var(--accent)' : 'var(--hight)'}`} /></button>}
 
             {showOption &&
                 <DatePicker
