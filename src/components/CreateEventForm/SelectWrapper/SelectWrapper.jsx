@@ -2,20 +2,22 @@ import styles from '../CreateEventForm.module.css';
 import {GoChevronDown, GoChevronUp} from 'react-icons/go'
 import { nanoid } from "nanoid";
 
-const SelectWrapper = ({label, name, handleSelectClick, selectValue, showOption, optionList, handleOptionSelect}) => {
+const SelectWrapper = ({label, name, validation, handleSelectClick, selectValue, showOption, optionList, handleOptionSelect}) => {
     return (
         <div className={styles.inputWrapper}>
             <div className={styles.label}>{label}</div>
             <button
                 name={name}
-                className={styles.input}
+                className={`${validation ? styles.input : styles.inputInvalid}`}
                 onClick={handleSelectClick}
 
             >
                 {selectValue}
             </button>
 
-            {showOption ? <button className={styles.refreshBtn}><GoChevronUp size={24} color='var(--accent)' /></button> : <button className={styles.refreshBtn}><GoChevronDown size={24} color='var(--accent)' /></button>}
+            {!validation && <div className={styles.invalidInputeMessage}></div>}
+
+            {showOption ? <button className={styles.refreshBtn}><GoChevronUp size={24} color={`${validation ? 'var(--accent)' : 'var(--hight)'}`} /></button> : <button className={styles.refreshBtn}><GoChevronDown size={24} color={`${validation ? 'var(--accent)' : 'var(--hight)'}`} /></button>}
 
             <div>
                 {showOption &&

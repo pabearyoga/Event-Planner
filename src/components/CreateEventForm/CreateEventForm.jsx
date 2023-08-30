@@ -8,10 +8,10 @@ import DatePickerInput from './Datepicker/DatepickerInput/DatepickerInput';
 import TimePick from './TimePicker/TimePicker';
 import { Btn } from '../Btn/Btn';
 import { nanoid } from 'nanoid'
-import { format } from 'date-fns';
+import { parse, format } from 'date-fns';
 import { addEvent } from '../../utils/services/eventService';
 // import { addEvent, updateEvent, deleteEvent, getAllEvents } from '../../utils/services/eventService';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const CreateEventForm = () => {
@@ -37,7 +37,7 @@ const CreateEventForm = () => {
           // InputValidation
   const [titleValidation, setTitleValidation] = useState(true);
   const [dateValidation, setDateValidation] = useState(true);
-  const [timeValidation, setTimenValidation] = useState(true);
+  const [timeValidation, setTimeValidation] = useState(true);
   const [locationValidation, setLocationValidation] = useState(true);
   const [categoryValidation, setCategoryValidation] = useState(true);
   const [priorityValidation, setPriorityValidation] = useState(true);
@@ -50,8 +50,8 @@ const CreateEventForm = () => {
     id: id,
     name: title,
     description: description,
-    category: category,
-    priority: priority,
+    category: category.toLowerCase(),
+    priority: priority.toLowerCase(),
     location: location,
     date: date,
     time: time,
@@ -79,6 +79,7 @@ const CreateEventForm = () => {
         setShowPriorities(false)
         break;
       case "time":
+        setTimeValidation(true)
         setShowTimePicker(prevShowTimePicker => !prevShowTimePicker)
         setShowDatePicker(false)
         setShowCategories(false)
@@ -89,6 +90,7 @@ const CreateEventForm = () => {
         setLocation(e.target.value);
         break;
       case "category":
+        setCategoryValidation(true)
         setShowCategories(prevShowPriorities => !prevShowPriorities)
         setShowTimePicker(false)
         setShowDatePicker(false)
@@ -98,6 +100,7 @@ const CreateEventForm = () => {
         setPhoto(e.target.files[0]);
         break;
       case 'priority':
+        setPriorityValidation(true)
         setShowPriorities(prevShowPriorities => !prevShowPriorities)
         setShowCategories(false)
         setShowTimePicker(false)
@@ -112,7 +115,7 @@ const CreateEventForm = () => {
 
   const handleOptionSelect = (e) => {
     switch (e.target.name) {
-      case 'Hight':
+      case 'High':
       case 'Medium':
       case 'Low':
         setPriority(e.target.name)
@@ -146,25 +149,27 @@ const CreateEventForm = () => {
   }
 
   const onSelectTime = (time) => {
-    setTime(time)
-
+    
+    const parsedTime = parse(time, 'hh:mm a', new Date());
+    const formattedTime = format(parsedTime, 'HH:mm');
+    
+    setTime(formattedTime)
 
   }
 
-  const priorityList = ['Hight', 'Medium', 'Low']
-
+  const priorityList = ['High', 'Medium', 'Low']
   const categoryList = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport']
 
 
   useEffect(() => {
-    if (title && location && date) {
+    if (title && location && date && time && category && priority) {
       setSubmitDisabled(false)
       // console.log(submitDisabled)
     } else {
       setSubmitDisabled(true);
       // console.log(submitDisabled)
     }
-  }, [title, location, submitDisabled]);
+  }, [title, location, submitDisabled, date, time, category, priority]);
   
 
   const handleSubmit = (e) => {
@@ -175,7 +180,6 @@ const CreateEventForm = () => {
   useEffect(() => {
     setId(idEvent);
   }, []); 
-
 
   const formSubmit = (e) => {
     e.preventDefault();
@@ -192,20 +196,21 @@ const CreateEventForm = () => {
     setPhoto(null);
     setPriority('');
 
+
+
     // setRedirectToHome(true)
     navigate('/');
   }
-
 
   const notValidForm = (e) => {
     e.preventDefault();
 
     !title && setTitleValidation(false);
     !date && setDateValidation(false);
-    // !time && setTimeValidation(false);
+    !time && setTimeValidation(false);
     !location && setLocationValidation(false);
-    // !category && setCategoryValidation(false);
-    // !priority && setPriorityValidation(false);
+    !category && setCategoryValidation(false);
+    !priority && setPriorityValidation(false);
   }
 
   return (
@@ -243,6 +248,7 @@ const CreateEventForm = () => {
         <TimePick
           label='Select time'
           name='time'
+          validation={timeValidation}
           handleInputChange={handleInputChange}
           selectValue={time}
           showOption={showTimePicker}
@@ -262,6 +268,7 @@ const CreateEventForm = () => {
         <SelectWrapper
           label='Category'
           name='category'
+          validation={categoryValidation}
           handleSelectClick={handleInputChange}
           selectValue={category}
           showOption={showCategories}
@@ -279,6 +286,7 @@ const CreateEventForm = () => {
         <SelectWrapper
           label='Priority'
           name='priority'
+          validation={priorityValidation}
           handleSelectClick={handleInputChange}
           selectValue={priority}
           showOption={showPriorities}
@@ -286,7 +294,7 @@ const CreateEventForm = () => {
           handleOptionSelect={handleOptionSelect}
         />
 
-          </div>
+      </div>
 
       <div className={styles.submitBtnWrapper}>
         {submitDisabled ? 

@@ -85,13 +85,15 @@
 }
 
 @media screen and (min-width: 768px) {
-  .input {
+  .input,
+  .inputInvalid {
     width: 308px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .input {
+  .input,
+  .inputInvalid {
     width: 372px;
   }
 }

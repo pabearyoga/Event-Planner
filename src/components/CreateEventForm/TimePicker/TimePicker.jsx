@@ -2,7 +2,7 @@ import styles from '../CreateEventForm.module.css';
 import {GoChevronDown, GoChevronUp} from 'react-icons/go'
 import TimePickerSwiper from './TimePickerSwiper/TimePickerSwiper';
 
-const TimePick = ({label, name, handleInputChange, selectValue, showOption, onSelectTime}) => {
+const TimePick = ({label, name, validation, handleInputChange, selectValue, showOption, onSelectTime}) => {
 
     return (
         <div className={styles.inputWrapper}>
@@ -10,13 +10,14 @@ const TimePick = ({label, name, handleInputChange, selectValue, showOption, onSe
             <button
                 name={name}
                 onClick={handleInputChange}
-                className={styles.input}
-
+                className={`${validation ? styles.input : styles.inputInvalid}`}
             >
                 {selectValue}
             </button>
 
-            {showOption ? <button className={styles.refreshBtn}><GoChevronUp size={24} color='var(--accent)' /></button> : <button className={styles.refreshBtn}><GoChevronDown size={24} color='var(--accent)' /></button>}
+            {!validation && <div className={styles.invalidInputeMessage}></div>}
+
+            {showOption ? <button className={styles.refreshBtn}><GoChevronUp size={24} color={`${validation ? 'var(--accent)' : 'var(--hight)'}`} /></button> : <button className={styles.refreshBtn}><GoChevronDown size={24} color={`${validation ? 'var(--accent)' : 'var(--hight)'}`} /></button>}
 
             {showOption &&
                 <TimePickerSwiper
