@@ -11,11 +11,12 @@ import { nanoid } from 'nanoid'
 import { format } from 'date-fns';
 import { addEvent } from '../../utils/services/eventService';
 // import { addEvent, updateEvent, deleteEvent, getAllEvents } from '../../utils/services/eventService';
-// import { Redirect } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 
 const CreateEventForm = () => {
   const idEvent = nanoid();
+   const navigate = useNavigate();
 
   // const [redirectToHome, setRedirectToHome] = useState(false)
   const [id, setId] = useState('')
@@ -178,8 +179,6 @@ const CreateEventForm = () => {
 
     addEvent(data)
 
-    console.log(data)
-
     setId('');
     setTitle('');
     setDescription('');
@@ -191,6 +190,7 @@ const CreateEventForm = () => {
     setPriority('');
 
     // setRedirectToHome(true)
+    navigate('/');
   }
 
   const notValidForm = (e) => {
