@@ -16,9 +16,9 @@ import { useNavigate } from 'react-router-dom';
 
 const CreateEventForm = () => {
   const idEvent = nanoid();
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const [redirectToHome, setRedirectToHome] = useState(false)
+  // data
   const [id, setId] = useState('')
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -29,12 +29,13 @@ const CreateEventForm = () => {
   const [photo, setPhoto] = useState('default');
   const [priority, setPriority] = useState('');
 
+  // ShownInputItem
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [showPriorities, setShowPriorities] = useState(false);
 
-          // InputValidation
+  // InputValidation
   const [titleValidation, setTitleValidation] = useState(true);
   const [dateValidation, setDateValidation] = useState(true);
   const [timeValidation, setTimeValidation] = useState(true);
@@ -44,7 +45,23 @@ const CreateEventForm = () => {
 
   const [submitDisabled, setSubmitDisabled] = useState(true)
 
+  const [showPopupRequiredFields, setShowPopupRequiredFields] = useState(false)
+  // const [togglePopupAnimation, setlePopupAnimation] = useState(false)
 
+  useEffect(() => {
+    if (title && location && date && time && category && priority) {
+      setSubmitDisabled(false)
+    } else {
+      setSubmitDisabled(true);
+    }
+  }, [title, location, submitDisabled, date, time, category, priority]);
+  
+  useEffect(() => {
+    setId(idEvent);
+  }, []); 
+
+  const priorityList = ['High', 'Medium', 'Low']
+  const categoryList = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport', 'Other']
 
   const data = {
     id: id,
@@ -57,9 +74,6 @@ const CreateEventForm = () => {
     time: time,
     photo: photo
   }
-
-
-
 
   const handleInputChange = (e) => {
     switch (e.target.name) {
@@ -112,7 +126,6 @@ const CreateEventForm = () => {
       
   }
   
-
   const handleOptionSelect = (e) => {
     switch (e.target.name) {
       case 'High':
@@ -129,6 +142,7 @@ const CreateEventForm = () => {
       case 'Workshop':
       case 'Party':
       case 'Sport':
+      case 'Other':
         setCategory(e.target.name)
         setShowCategories(prevShowPriorities => !prevShowPriorities)
         break;
@@ -149,37 +163,32 @@ const CreateEventForm = () => {
   }
 
   const onSelectTime = (time) => {
-    
     const parsedTime = parse(time, 'hh:mm a', new Date());
-    const formattedTime = format(parsedTime, 'HH:mm');
-    
+    const formattedTime = format(parsedTime, 'HH:mm'); 
     setTime(formattedTime)
-
   }
-
-  const priorityList = ['High', 'Medium', 'Low']
-  const categoryList = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport']
-
-
-  useEffect(() => {
-    if (title && location && date && time && category && priority) {
-      setSubmitDisabled(false)
-      // console.log(submitDisabled)
-    } else {
-      setSubmitDisabled(true);
-      // console.log(submitDisabled)
-    }
-  }, [title, location, submitDisabled, date, time, category, priority]);
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();    
-
   };
 
-  useEffect(() => {
-    setId(idEvent);
-  }, []); 
+  const notValidForm = (e) => {
+    e.preventDefault();
+
+    !title && setTitleValidation(false);
+    !date && setDateValidation(false);
+    !time && setTimeValidation(false);
+    !location && setLocationValidation(false);
+    !category && setCategoryValidation(false);
+    !priority && setPriorityValidation(false);
+
+    setShowPopupRequiredFields(true)
+    setTimeout(() => {
+      setShowPopupRequiredFields(false)
+    }, 4000)
+  }
+
+  console.log(showPopupRequiredFields)
 
   const formSubmit = (e) => {
     e.preventDefault();
@@ -200,17 +209,6 @@ const CreateEventForm = () => {
 
     // setRedirectToHome(true)
     navigate('/');
-  }
-
-  const notValidForm = (e) => {
-    e.preventDefault();
-
-    !title && setTitleValidation(false);
-    !date && setDateValidation(false);
-    !time && setTimeValidation(false);
-    !location && setLocationValidation(false);
-    !category && setCategoryValidation(false);
-    !priority && setPriorityValidation(false);
   }
 
   return (
@@ -304,7 +302,10 @@ const CreateEventForm = () => {
 
       </div>
 
+      {showPopupRequiredFields && <div className={styles.popup}>Please fill out all the required fields !</div>}
     </form>
+// className={`${validation ? styles.input : styles.inputInvalid}`}
+
   );
 };
 
