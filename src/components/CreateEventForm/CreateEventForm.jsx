@@ -188,8 +188,6 @@ const CreateEventForm = () => {
     }, 4000)
   }
 
-  console.log(showPopupRequiredFields)
-
   const formSubmit = (e) => {
     e.preventDefault();
 
