@@ -157,7 +157,7 @@ const CreateEventForm = () => {
   }
 
   const onSelectDate = (date) => {
-    const formateDate = format(date, 'dd.MM.yyyy')
+    const formateDate = format(date, 'dd.MM')
     setDate(formateDate)
     setShowDatePicker(false)
   }
