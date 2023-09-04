@@ -9,7 +9,7 @@ import TimePick from './TimePicker/TimePicker';
 import { Btn } from '../Btn/Btn';
 import { nanoid } from 'nanoid'
 import { parse, format } from 'date-fns';
-import { addEvent } from '../../utils/services/eventService';
+import { addEvent, updateEvent } from '../../utils/services/eventService';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -224,12 +224,13 @@ const CreateEventForm = ({event}) => {
     }, 4000)
   }
 
+
   const formSubmit = (e) => {
     e.preventDefault();
 
-    console.log(e.target)
-
-    addEvent(data)
+    if (e.target.textContent === 'Save') {
+      updateEvent(event.id, data)
+    } else if (e.target.textContent === 'Add event') {
 
     setId('');
     setTitle('');
@@ -240,10 +241,9 @@ const CreateEventForm = ({event}) => {
     setCategory('');
     setPhoto(null);
     setPriority('');
+   addEvent(data);
 
-
-
-    // setRedirectToHome(true)
+    }
     navigate('/');
   }
 
