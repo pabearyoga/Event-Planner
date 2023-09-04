@@ -1,6 +1,5 @@
 import css from './EventDetailsItem.module.css'
 import { useState, useEffect } from "react";
-import { Btn } from '../Btn/Btn';
 
 import testImg from '../../images/img1.jpg' 
 

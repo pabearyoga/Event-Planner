@@ -1,4 +1,5 @@
 import database from '../eventDB.json';
+const token = '64f5b6cd2b07270f705d910a';
 
 // Додавання події до бази даних
 export const addEvent = newEvent => {
@@ -26,6 +27,21 @@ export const deleteEvent = id => {
 };
 
 // Виведення всіх подій
-export const getAllEvents = () => {
-  return database;
+export const getAllEvents = async () => {
+  try {
+    const response = await fetch(`https://${token}.mockapi.io/event`, {
+      method: 'GET',
+      headers: { 'content-type': 'application/json' },
+    });
+    const eventList = await response.json();
+    console.log(eventList);
+    return eventList;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
+
+// export const getAllEvents = () => {
+//   console.log(database);
+//   return database;
+// };

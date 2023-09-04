@@ -22,20 +22,6 @@ export const EventCardItem = ({ data }) => {
         }
     }, [data.priority])
 
-    const images = {
-        img1: require('../../../images/img1.jpg'),
-        img2: require('../../../images/img2.jpg'),
-        img3: require('../../../images/img3.jpg'),
-        img4: require('../../../images/img4.jpg'),
-        img5: require('../../../images/img5.jpg'),
-        img6: require('../../../images/img6.jpg'),
-        img7: require('../../../images/img7.jpg'),
-        img8: require('../../../images/img8.jpg'),
-        default: require('../../../images/default.png'),
-  
-    };
-
-
   
     return (
         <div className={css.wrapper}>
@@ -46,7 +32,7 @@ export const EventCardItem = ({ data }) => {
 
                 </div>
                 <div className={css.imgWrapper} >
-                    <img src={images[data.photo]} className={css.img} alt={data.name}></img>
+                    <img src={data.photo} className={css.img} alt={data.name}></img>
                 </div>
                 <div className={css.overlay}>
                     <div className={css.overlayHeader}>
