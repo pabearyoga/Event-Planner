@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
 import css from './EventCardItem.module.css';
 import { Btn } from '../../Btn/Btn';
+import {  useNavigate } from "react-router-dom"
+
 
 export const EventCardItem = ({ data }) => {
+    const navigate = useNavigate();
+
 
     const [color, setColor] = useState(null);
 
@@ -44,7 +48,7 @@ export const EventCardItem = ({ data }) => {
                         <p className={css.overlayContentText}>{data.description}</p>
                     </div>
                     <div className={css.overlayBtnWrapper}>
-                        <Btn style={{ padding: "10px 24px" }} onClick={()=> console.log(data.id)}>More info</Btn>
+                        <Btn style={{ padding: "10px 24px" }} onClick={()=> navigate(`/event/${data.id}`)}>More info</Btn>
                     </div>
                 </div>
             </div>

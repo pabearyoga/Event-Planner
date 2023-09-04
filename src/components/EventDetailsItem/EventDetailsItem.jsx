@@ -3,8 +3,6 @@ import css from './EventDetailsItem.module.css'
 import { useState, useEffect } from "react";
 import { getEventById, deleteEvent } from "../../utils/services/eventService";
 
-import testImg from '../../images/img1.jpg' 
-
 
 const EventDetailsItem = () => {
       const navigate = useNavigate();
