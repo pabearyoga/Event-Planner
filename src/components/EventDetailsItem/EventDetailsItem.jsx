@@ -46,6 +46,7 @@ const EventDetailsItem = () => {
         deleteEvent(id)
             navigate('/');  
     }
+
     
     return (
         <div className={css.wrapper}>
@@ -62,7 +63,7 @@ const EventDetailsItem = () => {
                 </ul>
             </div>
             <div className={css.btnWrapper}>
-                <button className={css.editBtn} type='button' onClick={() => console.log('edit')}>Edit</button>
+                <button className={css.editBtn} type='button' onClick={() => navigate(`/edit/${event.id}`)}>Edit</button>
                 <button className={css.deleteBtn} type='button' onClick={() => deleteEventById(id)}>Delete event</button>
             </div>
         </div>

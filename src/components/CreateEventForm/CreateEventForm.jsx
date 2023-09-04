@@ -69,8 +69,8 @@ const CreateEventForm = ({event}) => {
       setDate(date);
       setTime(time);
       setLocation(location);
-      setCategory(category.split("")[0].toUpperCase() + category.slice(1));
-      setPriority(priority.split("")[0].toUpperCase() + priority.slice(1));
+      setCategory(category);
+      setPriority(priority);
       setPhoto(photo);
 
   }, [event]);  
@@ -227,6 +227,8 @@ const CreateEventForm = ({event}) => {
   const formSubmit = (e) => {
     e.preventDefault();
 
+    console.log(e.target)
+
     addEvent(data)
 
     setId('');
@@ -302,7 +304,7 @@ const CreateEventForm = ({event}) => {
           name='category'
           validation={categoryValidation}
           handleSelectClick={handleInputChange}
-          selectValue={category}
+          selectValue={!category ? category : category.split("")[0].toUpperCase() + category.slice(1)}
           showOption={showCategories}
           optionList={categoryList}
           handleOptionSelect={handleOptionSelect}
@@ -320,7 +322,7 @@ const CreateEventForm = ({event}) => {
           name='priority'
           validation={priorityValidation}
           handleSelectClick={handleInputChange}
-          selectValue={priority}
+          selectValue={!priority ? priority : priority.split("")[0].toUpperCase() + priority.slice(1)}
           showOption={showPriorities}
           optionList={priorityList}
           handleOptionSelect={handleOptionSelect}
