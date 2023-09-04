@@ -28,7 +28,6 @@ export const getEventById = async id => {
     }
 
     const event = await response.json();
-    console.log(event);
     return event;
   } catch (error) {
     console.error(

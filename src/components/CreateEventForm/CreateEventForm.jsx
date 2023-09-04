@@ -64,7 +64,8 @@ const CreateEventForm = () => {
   const categoryList = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport', 'Other']
 
   const data = {
-    id: id,
+    // id: id,
+    eventId: id,
     name: title,
     description: description,
     category: category.toLowerCase(),
