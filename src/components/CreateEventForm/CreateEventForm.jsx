@@ -10,11 +10,10 @@ import { Btn } from '../Btn/Btn';
 import { nanoid } from 'nanoid'
 import { parse, format } from 'date-fns';
 import { addEvent } from '../../utils/services/eventService';
-// import { addEvent, updateEvent, deleteEvent, getAllEvents } from '../../utils/services/eventService';
 import { useNavigate } from 'react-router-dom';
 
 
-const CreateEventForm = () => {
+const CreateEventForm = ({event}) => {
   const idEvent = nanoid();
   const navigate = useNavigate();
 
@@ -46,7 +45,35 @@ const CreateEventForm = () => {
   const [submitDisabled, setSubmitDisabled] = useState(true)
 
   const [showPopupRequiredFields, setShowPopupRequiredFields] = useState(false)
-  // const [togglePopupAnimation, setlePopupAnimation] = useState(false)
+
+  // filling out the form fields when opening the Edit page
+  useEffect(() => {
+      if (!event) {
+          return;
+      }
+
+      const { 
+          name, 
+          description, 
+          category, 
+          priority, 
+          location, 
+          date, 
+          time, 
+          photo 
+      } = event;
+
+      
+      setTitle(name);
+      setDescription(description);
+      setDate(date);
+      setTime(time);
+      setLocation(location);
+      setCategory(category.split("")[0].toUpperCase() + category.slice(1));
+      setPriority(priority.split("")[0].toUpperCase() + priority.slice(1));
+      setPhoto(photo);
+
+  }, [event]);  
 
   useEffect(() => {
     if (title && location && date && time && category && priority) {
@@ -61,15 +88,23 @@ const CreateEventForm = () => {
   }, []); 
 
   const priorityList = ['High', 'Medium', 'Low']
-  const categoryList = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport', 'Other']
+  const categoryList = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport', 'Other'] 
+  
+  const caseFilter = (item) => {
+      if (!item) {
+          return item;
+      } else {
+        return item.toLowerCase()
+      }
+}
 
   const data = {
     // id: id,
     eventId: id,
     name: title,
     description: description,
-    category: category.toLowerCase(),
-    priority: priority.toLowerCase(),
+    category: caseFilter(category),
+    priority: caseFilter(priority),
     location: location,
     date: date,
     time: time,
@@ -296,14 +331,13 @@ const CreateEventForm = () => {
       <div className={styles.submitBtnWrapper}>
         {submitDisabled ? 
           <Btn type={'submit'}  onClick={notValidForm} >Add event</Btn> :
-          <Btn type={'submit'}  onClick={formSubmit} >Add event</Btn>
+          <Btn type={'submit'} onClick={formSubmit} >{!event ? 'Add event' : 'Save'}</Btn>
           }
 
       </div>
 
       {showPopupRequiredFields && <div className={styles.popup}>Please fill out all the required fields !</div>}
     </form>
-// className={`${validation ? styles.input : styles.inputInvalid}`}
 
   );
 };

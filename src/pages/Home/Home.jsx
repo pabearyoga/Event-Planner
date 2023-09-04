@@ -33,7 +33,6 @@ const Home = () => {
     return (
         <div className={css.home}>
             <div className={css.homeHeader}>
-                <Title>My events</Title>
 
                 <div className={css.settings}>
                     <Category></Category>
@@ -44,6 +43,7 @@ const Home = () => {
                 </div>               
             </div>
 
+            <Title>My events</Title>
             <EventCardList eventData={events}></EventCardList>
         </div>
     )

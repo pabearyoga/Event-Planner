@@ -1,13 +1,44 @@
 .home {
+  width: 302px;
   margin-top: 60px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 24px;
 }
 
 .homeHeader {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
+  position: relative;
 }
 
 .settings {
   display: flex;
   gap: 24px;
+
+  position: absolute;
+  top: -100px;
+  right: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .home {
+    width: 688px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 120px;
+  }
+
+  .settings {
+    top: -80px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .home {
+    width: 1280px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 140px;
+  }
 }

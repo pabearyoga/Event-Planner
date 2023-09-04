@@ -1,18 +1,16 @@
-import { useParams, Outlet, NavLink, useLocation, useNavigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import css from './EventDetailsItem.module.css'
 import { useState, useEffect } from "react";
 import { getEventById, deleteEvent } from "../../utils/services/eventService";
 
 
 const EventDetailsItem = () => {
-      const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [color, setColor] = useState(null);
     const [event, setEvent] = useState([]);
 
     const { id } = useParams();
-
-
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -46,9 +44,7 @@ const EventDetailsItem = () => {
     
     const deleteEventById = (id) => {
         deleteEvent(id)
-            navigate('/');
-
-    
+            navigate('/');  
     }
     
     return (
