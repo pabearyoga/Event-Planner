@@ -25,7 +25,7 @@ const CreateEventForm = ({event}) => {
   const [time, setTime] = useState('');
   const [location, setLocation] = useState('');
   const [category, setCategory] = useState('');
-  const [photo, setPhoto] = useState('default');
+  const [photo, setPhoto] = useState('https://res.cloudinary.com/dnsiuzg5g/image/upload/v1693941808/default_kl2nn5.png');
   const [priority, setPriority] = useState('');
 
   // ShownInputItem
