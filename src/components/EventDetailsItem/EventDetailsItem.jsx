@@ -51,7 +51,7 @@ const EventDetailsItem = () => {
     return (
         <div className={css.wrapper}>
             <div className={css.imgWrapper}>
-                <img src={event.photo} alt={event.name} className={css.img} />
+                <img src={event.photo === 'https://res.cloudinary.com/dnsiuzg5g/image/upload/v1693941808/default_kl2nn5.png' ? 'https://res.cloudinary.com/dnsiuzg5g/image/upload/v1694291327/default_horizontal_s53gz0.png' : event.photo} alt={event.name} className={css.img} />
             </div>
             <div className={css.contentWrapper}>
                 <p className={css.contentTitle}>{event.description}</p>
