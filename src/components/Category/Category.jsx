@@ -1,4 +1,5 @@
 import css from './Category.module.css';
+import SelectWrapper from '../CreateEventForm/SelectWrapper/SelectWrapper';
 
 
 const Category = () => {
@@ -13,6 +14,7 @@ const Category = () => {
             <option value='Party'>Party</option>
             <option value='Sport'>Sport</option>
         </select>   
+
     )
     
 };
