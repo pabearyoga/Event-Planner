@@ -20,6 +20,7 @@ const Home = () => {
     const [events, setEvents] = useState([]);
     const [category, setCategory] = useState('Category')
     const [sortBy, setSortBy] = useState('Sort by')
+    const [sortByUpDown, setSortByUpDown] = useState()
     const [showCategoryOption, setShowCategoryOption] = useState(false)
     const [showSortByOption, setShowSortByOption] = useState(false)
 
@@ -61,15 +62,15 @@ const Home = () => {
             case "Party":
             case "Sport":
             case "Other":
-                setCategory(e.target.name)
+                setCategory(e.target.name.toLowerCase())
                 break;
             case "by name":
             case "by data":
             case "by priority":
                 if (e.target.nextSibling !== null && e.target.name === e.target.nextSibling.name) {
-                    console.log('up')
+                    setSortByUpDown('up')
                 } else {
-                    console.log('down')
+                    setSortByUpDown('down')
                 }
                 setSortBy(e.target.name)
                 break;
@@ -79,6 +80,45 @@ const Home = () => {
         }
     }
 
+      const filterAndSortEvents = () => {
+        let filteredEvents = events;
+          
+        // Фільтрація подій за категорією
+        if (category !== 'all' && category !== 'Category') {
+            filteredEvents = events.filter(event => event.category === category);
+        }
+
+        // Сортування подій
+        switch (sortBy) {
+            case 'by name':
+                    if (sortByUpDown === 'up') {
+                    filteredEvents.sort((a, b) => a.name.localeCompare(b.name));
+                    } else {
+                    filteredEvents.sort((a, b) => b.name.localeCompare(a.name));
+                    }
+                break;
+            case 'by data':
+                    if (sortByUpDown === 'up') {
+                    filteredEvents.sort((a, b) => a.data.localeCompare(b.data));
+                    } else {
+                    filteredEvents.sort((a, b) => b.data.localeCompare(a.data));
+                    }
+                break;
+            case 'by priority':
+                    if (sortByUpDown === 'up') {
+                    filteredEvents.sort((a, b) => a.priority.localeCompare(b.priority));
+                    } else {
+                    filteredEvents.sort((a, b) => b.priority.localeCompare(a.priority));
+                    }
+                break;
+            default:
+                break;
+        }
+
+        return filteredEvents;
+    };
+
+    const filteredAndSortedEvents = filterAndSortEvents();
 
     return (
         <div className={css.home}>
@@ -92,7 +132,6 @@ const Home = () => {
                         Icon={CiFilter}
                         showOption={showCategoryOption}
                         optionList={categoryList}
-                        // handleOptionSelect={(e)=> setCategory(e.target.name)}
                         handleOptionSelect={handleOptionSelect}
                     ></FilterSelect>
                     <FilterSelect
@@ -111,7 +150,7 @@ const Home = () => {
             </div>
 
             <Title>My events</Title>
-            <EventCardList eventData={events}></EventCardList>
+            <EventCardList eventData={filteredAndSortedEvents}></EventCardList>
         </div>
     )
 };
