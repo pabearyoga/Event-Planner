@@ -31,7 +31,7 @@ const FilterSelect = ({ name, handleSelectClick, selectValue, Icon, showOption, 
                                 category={name}
                                 name={item}
                                 key={nanoid()}
-                                className={styles.optionListItem}
+                                className={name === 'sort by' ? styles.optionListItemSortBy : styles.optionListItem}
                                 onClick={handleOptionSelect}
                             >
                                 {item}

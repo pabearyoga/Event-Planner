@@ -57,6 +57,7 @@ const Home = () => {
 
                 <div className={css.settings}>
                     <FilterSelect
+                        name='category'
                         selectValue={category}
                         handleSelectClick={categorySelectClick}
                         Icon={CiFilter}
@@ -65,6 +66,7 @@ const Home = () => {
                         handleOptionSelect={(e)=> setCategory(e.target.name)}
                     ></FilterSelect>
                     <FilterSelect
+                        name='sort by'
                         selectValue={sortBy}
                         handleSelectClick={sortBySelectClick}
                         Icon={LuSettings2}
