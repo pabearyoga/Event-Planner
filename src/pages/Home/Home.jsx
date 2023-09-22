@@ -41,10 +41,13 @@ const Home = () => {
 
     const categorySelectClick = () => {
         setShowCategoryOption(prevShowCategoryOption => !prevShowCategoryOption)
+        setShowSortByOption(false)
     }
 
     const sortBySelectClick = () => {
         setShowSortByOption(prevShowSortByOption => !prevShowSortByOption)
+        setShowCategoryOption(false)
+
     }
 
 
