@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import styles from './FilterSelect.module.css';
-import {CiFilter} from 'react-icons/ci'
 import { nanoid } from "nanoid";
 
 const FilterSelect = ({ name, handleSelectClick, selectValue, Icon, showOption, optionList, handleOptionSelect }) => {
     const [isHovered, setIsHovered] = useState(false);
-
-
 
     return (
         <div className={styles.inputWrapper}>

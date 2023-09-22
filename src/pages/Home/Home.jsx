@@ -50,6 +50,35 @@ const Home = () => {
 
     }
 
+    const handleOptionSelect = (e) => {
+        switch (e.target.name) {
+            case "All":
+            case "Art":
+            case "Music":
+            case "Business":
+            case "Conference":
+            case "Workshop":
+            case "Party":
+            case "Sport":
+            case "Other":
+                setCategory(e.target.name)
+                break;
+            case "by name":
+            case "by data":
+            case "by priority":
+                if (e.target.nextSibling !== null && e.target.name === e.target.nextSibling.name) {
+                    console.log('up')
+                } else {
+                    console.log('down')
+                }
+                setSortBy(e.target.name)
+                break;
+
+            default:
+                return;
+        }
+    }
+
 
     return (
         <div className={css.home}>
@@ -63,7 +92,8 @@ const Home = () => {
                         Icon={CiFilter}
                         showOption={showCategoryOption}
                         optionList={categoryList}
-                        handleOptionSelect={(e)=> setCategory(e.target.name)}
+                        // handleOptionSelect={(e)=> setCategory(e.target.name)}
+                        handleOptionSelect={handleOptionSelect}
                     ></FilterSelect>
                     <FilterSelect
                         name='sort by'
@@ -72,7 +102,7 @@ const Home = () => {
                         Icon={LuSettings2}
                         showOption={showSortByOption}
                         optionList={sortByList}
-                        handleOptionSelect={(e)=> setSortBy(e.target.name)}
+                        handleOptionSelect={handleOptionSelect}
                     ></FilterSelect>
                     <NavLink to="create">
                         <Btn>Add new event</Btn>
