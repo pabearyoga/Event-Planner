@@ -1,7 +1,12 @@
+import React, { useState } from 'react';
+
 import css from './Search.module.css';
 import { FiSearch } from 'react-icons/fi';
 
 const Search = () => {
+
+    const [search, setSearch] = useState();
+    console.log(search)
     return (
         <div className={css.wrapper}>
             <div className={css.searchImg}>
@@ -12,9 +17,9 @@ const Search = () => {
                 type="text"
                 className={css.search}
                 name="filter"
-                // value={filters}
+                value={search}
                 placeholder="Search by keywords"
-                // onChange={handleFilterChange}
+                onChange={(e) => setSearch(e.target.value)}
                 required
             />
         </div>
