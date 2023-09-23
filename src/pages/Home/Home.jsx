@@ -32,8 +32,6 @@ const Home = () => {
 
     const { search } = useUser();
 
-    console.log(search)
-
     useEffect(() => {
         const fetchEvents = async () => {
         try {
