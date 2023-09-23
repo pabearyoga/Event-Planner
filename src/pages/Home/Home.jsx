@@ -97,8 +97,9 @@ const Home = () => {
             return events.filter(event => {
                 const eventName = event.name.toLowerCase();
                 const eventDescription = event.description.toLowerCase();
+                const eventLocation = event.location.toLowerCase();
 
-                return eventName.includes(search) || eventDescription.includes(search);
+                return eventName.includes(search) || eventDescription.includes(search) || eventLocation.includes(search);
             });
         };
 
