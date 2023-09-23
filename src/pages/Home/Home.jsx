@@ -10,7 +10,10 @@ import { getAllEvents } from '../../utils/services/eventService';
 import { NavLink } from 'react-router-dom';
 
 import {CiFilter} from 'react-icons/ci'
-import {LuSettings2} from 'react-icons/lu'
+import { LuSettings2 } from 'react-icons/lu'
+
+import { useUser } from '../../hooks/userContext';
+
 
 
 
@@ -26,6 +29,10 @@ const Home = () => {
 
     const categoryList = ['All', 'Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport', 'Other'] 
     const sortByList = ['by name', 'by name', 'by data', 'by data', 'by priority', 'by priority']
+
+    const { search } = useUser();
+
+    console.log(search)
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -80,8 +87,26 @@ const Home = () => {
         }
     }
 
-      const filterAndSortEvents = () => {
-        let filteredEvents = events;
+        const filterEventsByKeyword = (events, search) => {
+            if (!search) {
+                return events; // Якщо ключове слово порожнє, повертаємо всі події
+            }
+
+            search = search.toLowerCase(); // Перетворюємо ключове слово у нижній регістр
+
+            return events.filter(event => {
+                const eventName = event.name.toLowerCase();
+                const eventDescription = event.description.toLowerCase();
+
+                return eventName.includes(search) || eventDescription.includes(search);
+            });
+        };
+
+      const searchFilterAndSortEvents = () => {
+          let filteredEvents = events;
+          
+        // Фільтрація подій за ключовим словом
+        filteredEvents = filterEventsByKeyword(filteredEvents, search);
           
         // Фільтрація подій за категорією
         if (category !== 'all' && category !== 'Category') {
@@ -118,7 +143,7 @@ const Home = () => {
         return filteredEvents;
     };
 
-    const filteredAndSortedEvents = filterAndSortEvents();
+    const filteredAndSortedEvents = searchFilterAndSortEvents();
 
     return (
         <div className={css.home}>

@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import { useUser } from '../../hooks/userContext';
 
 import css from './Search.module.css';
 import { FiSearch } from 'react-icons/fi';
 
 const Search = () => {
 
-    const [search, setSearch] = useState();
+
+    const { search, changeSearchInput } = useUser();
+
+    // console.log(search)
+
+    // const [search, setSearch] = useState();
     console.log(search)
     return (
         <div className={css.wrapper}>
@@ -19,7 +25,7 @@ const Search = () => {
                 name="filter"
                 value={search}
                 placeholder="Search by keywords"
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={changeSearchInput}
                 required
             />
         </div>
