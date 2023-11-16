@@ -38,6 +38,10 @@
     width: 1280px;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 140px;
+    margin-top: 64px;
+  }
+
+  .settings {
+    top: 0;
   }
 }
