@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useUser } from '../../hooks/userContext';
 
 import css from './Search.module.css';
