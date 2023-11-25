@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Event Planner - Web Application for Event Planning
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This web application was created as part of the Frontend test task, using React.
+Users can efficiently plan and organize events through this application.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### Basic Functionality:
 
-### `npm start`
+1. **Home Page**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+   - Displays a list of upcoming events with essential information such as name
+     and date, utilizing the CSS Grid algorithm for event list layout.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. **Event Creation Page**
 
-### `npm test`
+   - Provides a form for users to fill in necessary event information, including
+     name, date, time, location, and description.
+   - Users can create an event after filling out the form.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. **Event Page**
+   - Shows detailed information about a specific event, including all the
+     information filled out on the event creation page.
 
-### `npm run build`
+### Intermediate Functionality:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Home Page**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   - Added the ability to filter events by categories, such as music, sports,
+     culture, etc.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Event Creation Page**
 
-### `npm run eject`
+   - Expanded the event creation form with the option to choose a category.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Event Page**
+   - Users can delete an event; upon deletion, the user is redirected to the
+     home page.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Advanced Functionality:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Home Page**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   - Events with different priorities are displayed in different colors, with
+     priority indication on the event card.
 
-## Learn More
+2. **Event Creation Page**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   - Added the ability to set the priority of an event (high, medium, low).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. **Event Page**
+   - Users can edit an event. Clicking the Edit button redirects the user to the
+     event editing page, where they can modify the filled form with event
+     information.
 
-### Code Splitting
+## Additional Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Sorting events: Users can sort events by various criteria, such as name, date,
+  or priority.
+- Event search: Users can search for an event by name or description using the
+  input in the header. Search occurs character by character.
+- Pagination on the home page.
+- Language support: Added the ability to choose the language using
+  react-i18next.
 
-### Analyzing the Bundle Size
+## Execution Requirements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Fixed layout in px.
+- Semantic and valid markup, with a focus on accessibility (a11y).
+- Responsive and cross-browser layout - mobile from 320px, tablet from 768px,
+  desktop from 1280px.
+- Utilized the Mobile-first approach.
+- Clean code with preserved formatting. Recommended to use ESLint/Prettier.
+- Code is organized into separate components.
 
-### Making a Progressive Web App
+## Submitting the Task
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Deploy the built project on netlify.com or github.com.
+2. Submit the completed test task through the
+   [Google Forms](https://forms.gle/kUHXFm2F1STGg2zU8).
 
-### Advanced Configuration
+## Technical Support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you encounter any technical difficulties in submitting the task, please reach
+out to [https://t.me/Kuznietsova_Oksana](https://t.me/Kuznietsova_Oksana).
