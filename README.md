@@ -5,7 +5,7 @@ Users can efficiently plan and organize events through this application.
 
 ## Features
 
-### Basic Functionality:
+### Functionality:
 
 1. **Home Page**
 
@@ -52,5 +52,3 @@ Users can efficiently plan and organize events through this application.
 - Utilized the Mobile-first approach.
 - Clean code with preserved formatting. Recommended to use ESLint/Prettier.
 - Code is organized into separate components.
-
-//
