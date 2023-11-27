@@ -6,7 +6,7 @@ const FilterSelect = ({ name, handleSelectClick, selectValue, Icon, showOption, 
     const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <div className={styles.inputWrapper}>
+        <div className={styles.inputWrapper} style={showOption ? { width: '170px' } : {}}>
             <button
                 name={name}
                 className={!showOption ? styles.filterBtn : styles.filterBtnShow}
@@ -15,7 +15,7 @@ const FilterSelect = ({ name, handleSelectClick, selectValue, Icon, showOption, 
                 onMouseLeave={() => setIsHovered(false)}
 
             >
-                <p>{selectValue}</p>                
+                <p className={!showOption && styles.text}>{selectValue}</p>                
                 <Icon size={24} color={`${isHovered} ? 'var(--accent)' : 'var(--accent)'`} />
             </button>
 

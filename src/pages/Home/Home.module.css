@@ -1,8 +1,9 @@
 .home {
-  width: 302px;
-  margin-top: 60px;
+  width: 302px; /* 272 mobile*/
+  margin-top: 140px;
   margin-right: auto;
   margin-left: auto;
+  /* padding: 24px; */
 }
 
 .homeHeader {
@@ -16,8 +17,16 @@
   gap: 24px;
 
   position: absolute;
-  top: -20px;
+  top: -96px;
   right: 0;
+}
+
+.addText {
+  display: none;
+}
+
+.addIcon {
+  display: block;
 }
 
 @media screen and (min-width: 768px) {
@@ -31,6 +40,10 @@
   .settings {
     top: -80px;
   }
+
+  .addText {
+    display: block;
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -43,5 +56,9 @@
 
   .settings {
     top: 0;
+  }
+
+  .addIcon {
+    display: none;
   }
 }

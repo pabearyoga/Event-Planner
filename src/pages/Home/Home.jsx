@@ -11,6 +11,7 @@ import { NavLink } from 'react-router-dom';
 
 import {CiFilter} from 'react-icons/ci'
 import { LuSettings2 } from 'react-icons/lu'
+import { HiOutlinePlus } from "react-icons/hi";
 
 import { useUser } from '../../hooks/userContext';
 
@@ -168,7 +169,7 @@ const Home = () => {
                         handleOptionSelect={handleOptionSelect}
                     ></FilterSelect>
                     <NavLink to="create">
-                        <Btn>Add new event</Btn>
+                        <Btn><HiOutlinePlus className={css.addIcon} size={24}/><p className={css.addText}>Add new event</p></Btn>
                     </NavLink>
                 </div>               
             </div>

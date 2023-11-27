@@ -1,6 +1,6 @@
 .btn {
   display: flex;
-  width: 193px;
+  width: 56px;
   padding: 16px 12px;
   justify-content: center;
   align-items: center;
@@ -21,4 +21,10 @@
   line-height: normal;
 
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .btn {
+    width: 193px;
+  }
 }
