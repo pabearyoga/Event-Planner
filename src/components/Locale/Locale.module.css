@@ -1,6 +1,7 @@
 .locale {
   display: flex;
   width: 69px;
+  height: 48px;
   padding: 12px 4px 12px 12px;
   align-items: center;
   gap: 4px;

@@ -16,7 +16,9 @@ const Header = () => {
                 </NavLink>
                 <div className={css.settings}>
                     <Search></Search>
-                    <Locale></Locale>
+                    <div className={css.localeWrapper}>
+                        <Locale></Locale>
+                    </div>
                 </div>
             </div>
         </header>

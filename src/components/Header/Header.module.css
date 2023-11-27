@@ -8,10 +8,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   max-width: var(--mobile);
   margin: 0 auto;
-  padding: 22px 0;
+  padding: 24px;
+  gap: 31px;
 }
 
 .settings {
@@ -19,11 +20,25 @@
   gap: 24px;
 }
 
+.localeWrapper {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     flex-direction: row;
+    align-items: center;
     max-width: var(--tablet);
     padding: 22px 40px;
+  }
+
+  .localeWrapper {
+    position: static;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
