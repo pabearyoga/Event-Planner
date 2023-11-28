@@ -33,7 +33,6 @@ export const EventCardItem = ({ data }) => {
                 <div className={css.filterInfo}>
                     <div className={css.filterInfoItem}>{data.category}</div>
                     <div className={css.filterInfoItem} style={{ color: color }}>{data.priority}</div>
-
                 </div>
                 <div className={css.imgWrapper} >
                     <img src={data.photo} className={css.img} alt={data.name}></img>
