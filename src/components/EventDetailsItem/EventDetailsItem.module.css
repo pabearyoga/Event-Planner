@@ -1,6 +1,6 @@
 .wrapper {
-  width: 628px;
-  height: 492px;
+  width: 272px;
+  /* height: 464px; */
   margin-top: 14px;
   border-radius: 8px;
   background: var(--white, #fff);
@@ -8,8 +8,8 @@
 }
 
 .imgWrapper {
-  width: 628px;
-  height: 272px;
+  width: 272px;
+  /* height: 272px; */
   border-radius: 8px;
   overflow: hidden;
 }
@@ -22,13 +22,31 @@
 }
 
 .contentWrapper {
-  padding: 20px 16px 0px 10px;
+  padding: 24px 16px 0px 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
+.contentText {
+  display: block;
+  color: #49454f;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  width: 100%; /* or specify a specific width */
+  max-width: 100%; /* add this line to limit to the parent width */
+  overflow-wrap: break-word; /* or use word-wrap: break-word; */
+}
+
 .contentList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contentFilterItemWrapper {
   display: flex;
   gap: 12px;
 }
@@ -53,14 +71,16 @@
 
 .btnWrapper {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 16px;
-  margin-top: 24px;
-  margin-right: 40px;
-  margin-left: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .deleteBtn {
+  width: 108px;
+  height: 32px;
+
   display: flex;
   padding: 8px 16px;
   justify-content: center;
@@ -83,6 +103,9 @@
 }
 
 .editBtn {
+  width: 108px;
+  height: 32px;
+
   display: flex;
   padding: 8px 16px;
   justify-content: center;
