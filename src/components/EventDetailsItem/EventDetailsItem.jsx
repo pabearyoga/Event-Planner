@@ -2,7 +2,6 @@ import { useParams, useNavigate } from "react-router-dom"
 import css from './EventDetailsItem.module.css'
 import { useState, useEffect } from "react";
 import { getEventById, deleteEvent } from "../../utils/services/eventService";
-import Title from '../Title/Title'
 
 
 const EventDetailsItem = () => {
@@ -53,7 +52,7 @@ const EventDetailsItem = () => {
     
     return (
         <>
-            <Title style={{marginRight: 'auto',   display: 'block'}}>{event.name}</Title>
+            <p className={css.title}>{event.name}</p>
 
             <div className={css.wrapper}>
                 <div className={css.imgWrapper}>

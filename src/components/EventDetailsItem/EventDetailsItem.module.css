@@ -1,3 +1,17 @@
+.title {
+  color: #3f3f3f;
+
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
 .wrapper {
   width: 272px;
   /* height: 464px; */
@@ -8,8 +22,8 @@
 }
 
 .imgWrapper {
-  width: 272px;
-  /* height: 272px; */
+  width: auto;
+  height: 168px;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -125,4 +139,49 @@
   border: 1px solid var(--accent, #7b61ff);
   outline: none;
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 32px;
+  }
+
+  .wrapper {
+    width: 688px;
+  }
+
+  .imgWrapper {
+    height: 272px;
+  }
+
+  .contentWrapper {
+    padding: 24px 24px 0 24px;
+  }
+
+  .contentList {
+    flex-direction: row;
+  }
+
+  .btnWrapper {
+    justify-content: end;
+    margin-right: 24px;
+  }
+
+  .deleteBtn,
+  .editBtn {
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .title {
+    width: 628px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .wrapper {
+    width: 628px;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

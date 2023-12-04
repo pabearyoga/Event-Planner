@@ -22,8 +22,11 @@
 @media screen and (min-width: 1280px) {
   .eventDetailWrapper {
     width: 1280px;
+    padding: 0 40px;
     margin-right: auto;
     margin-left: auto;
     /* margin-top: 64px; */
+
+    /* align-items: center; */
   }
 }
