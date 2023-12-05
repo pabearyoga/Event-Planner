@@ -1,6 +1,6 @@
 .btn {
   display: flex;
-  width: 56px;
+  width: 100%;
   padding: 16px 12px;
   justify-content: center;
   align-items: center;
