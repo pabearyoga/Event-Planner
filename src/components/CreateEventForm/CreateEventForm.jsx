@@ -85,7 +85,7 @@ const CreateEventForm = ({event}) => {
   
   useEffect(() => {
     setId(idEvent);
-  }, []); 
+  }, [idEvent]); 
 
   const priorityList = ['High', 'Medium', 'Low']
   const categoryList = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport', 'Other'] 
@@ -248,6 +248,10 @@ const CreateEventForm = ({event}) => {
   }
 
   return (
+    <>
+
+      <h2 className={styles.title}>{!event ? 'Create new event' : 'Edit event'}</h2>
+    
       <form className={styles.form} onSubmit={handleSubmit}>
           
       <div className={styles.wrapper}>
@@ -339,7 +343,9 @@ const CreateEventForm = ({event}) => {
       </div>
 
       {showPopupRequiredFields && <div className={styles.popup}>Please fill out all the required fields !</div>}
-    </form>
+      </form>
+    </>
+
 
   );
 };

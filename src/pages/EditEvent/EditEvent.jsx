@@ -1,8 +1,7 @@
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 import css from './EditEvent.module.css';
 import { BackBnt } from '../../components/BackBnt/BackBnt'
-import Title from '../../components/Title/Title'
 import CreateEventForm from '../../components/CreateEventForm/CreateEventForm'
 import { useState, useEffect } from "react";
 
@@ -26,7 +25,7 @@ const EditEvent = () => {
     }
 
     fetchEvents();
-    }, []); 
+    }, [id]); 
     // console.log(event)
 
     return (
@@ -34,9 +33,8 @@ const EditEvent = () => {
             <NavLink to="/">
                 <BackBnt></BackBnt>
             </NavLink>
-            <Title>Create new event</Title>
-            <CreateEventForm event={event}></CreateEventForm>
 
+            <CreateEventForm event={event}></CreateEventForm>
         </div>
     )
 };
